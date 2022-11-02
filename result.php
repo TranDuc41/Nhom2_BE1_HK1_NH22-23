@@ -1,14 +1,20 @@
-<?php
-session_start();
-if (isset($_SESSION['user'])) {
+<?php session_start() ?>
+<?php if (isset($_SESSION['user'])) {
 	include "headeruser.php";
 } else {
 	include "header.php";
-} ?>
+}
+
+?>
+
 <!-- BREADCRUMB -->
 <div id="breadcrumb" class="section">
 	<!-- container -->
+	<div class="container">
+		<!-- row -->
 
+		<!-- /row -->
+	</div>
 	<!-- /container -->
 </div>
 <!-- /BREADCRUMB -->
@@ -19,7 +25,9 @@ if (isset($_SESSION['user'])) {
 	<div class="container">
 		<!-- row -->
 		<div class="row">
+			<!-- ASIDE -->
 
+			<!-- /ASIDE -->
 
 			<!-- STORE -->
 			<div id="store" class="col-lg-12">
@@ -52,15 +60,16 @@ if (isset($_SESSION['user'])) {
 				<!-- store products -->
 				<div class="row">
 					<?php
-					if (isset($_GET['type_id'])) :
-						$type_id = $_GET['type_id'];
-						$getProductsByType = $product->getProductsByType($type_id);
+					if (isset($_GET['keyword'])) :
+						$keyword = $_GET['keyword'];
+						$searchCol = $_GET['searchCol'];
+						$search = $product->search($keyword, $searchCol);
 						$perPage = 3;
 						$page = isset($_GET['page']) ? $_GET['page'] : 1;
-						$total = count($getProductsByType);
-						$url = $_SERVER['PHP_SELF'] . "?type_id=" . $type_id;
-						$get3ProductsByType = $product->get3ProductsByType($type_id, $page, $perPage);
-						foreach ($get3ProductsByType as $value) :
+						$total = count($search);
+						$url = $_SERVER['PHP_SELF'] . "?keyword=" . $keyword . "&searchCol=" . $searchCol . "\"";
+						$search1 = $product->search1($keyword, $searchCol, $page, $perPage);
+						foreach ($search1 as $value) :
 					?>
 							<!-- product -->
 							<div class="col-md-4 col-xs-6">
@@ -72,8 +81,8 @@ if (isset($_SESSION['user'])) {
 									</div>
 									<div class="product-body">
 										<p class="product-category"></p>
-										<h3 class="product-name"><a href="detail.php?id=<?php echo $value['id'] ?>&type_id=<?php echo $value['type_id'] ?>"><?php echo $value['name'] ?></a></h3>
-										<h4 class="product-price"><?php echo number_format($value['price']) ?></h4>
+										<h3 class="product-name"><a href="#"><?php echo $value['name'] ?></a></h3>
+										<h4 class="product-price"><?php echo number_format($value['price']) ?>VND</h4>
 										<div class="product-rating">
 											<i class="fa fa-star"></i>
 											<i class="fa fa-star"></i>
@@ -89,25 +98,30 @@ if (isset($_SESSION['user'])) {
 									</div>
 									<a href="addcart.php?id=<?php echo $value['id'] ?>&type_id=<?php echo $value['type_id'] ?>">
 										<div class="add-to-cart">
-											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> ADD TO CART</button>
+											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>ADD TO CART</button>
 										</div>
 									</a>
 								</div>
 							</div>
 							<!-- /product -->
-						<?php endforeach; ?>
+					<?php endforeach;
+					endif ?>
 				</div>
 				<!-- /store products -->
 
 				<!-- store bottom filter -->
 				<div class="store-filter clearfix">
-					<!-- <span class="store-qty">Showing 20-100 products</span> -->
+
 					<ul class="store-pagination">
+						<!-- <li class="active">1</li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#"><i class="fa fa-angle-right"></i></a></li> -->
 						<?php echo $product->paginate($url, $total, $perPage, $page); ?>
 					</ul>
 				</div>
 				<!-- /store bottom filter -->
-			<?php endif; ?>
 			</div>
 			<!-- /STORE -->
 		</div>
@@ -116,4 +130,4 @@ if (isset($_SESSION['user'])) {
 	<!-- /container -->
 </div>
 <!-- /SECTION -->
-<?php include "footer.php" ?>
+<?php include "footer.php"; ?>

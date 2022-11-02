@@ -1,5 +1,5 @@
-<?php
-/** The name of the database*/
+<?php 
+/** The name of the database for WordPress */
 define( 'DB_NAME', 'nhom2' );
 /** MySQL database username */
 define( 'DB_USER', 'root' );
@@ -11,3 +11,4 @@ define( 'DB_HOST', 'localhost' );
 define( 'PORT', 3306);
 /** Database Charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
+?>
