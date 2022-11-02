@@ -9,7 +9,7 @@ class Product extends Db
         $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $item; //return an array
     }
-
+    
     public function get3NewProductsByID($type_id)
     {
         $sql = self::$connection->prepare("SELECT * FROM products WHERE `type_id` = ? ORDER BY `created_at` DESC LIMIT 0,3  ");
