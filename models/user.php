@@ -45,47 +45,7 @@ class User extends Db
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $items; //return an array
     }
-    public function changePassword($password, $username)
-    {
-        $sql = self::$connection->prepare("UPDATE `users` SET `password`=? WHERE `username`=?");
-        $password = md5($password);
-        $sql->bind_param("ss", $password, $username);
-        return  $sql->execute(); //return an object
-
-    }
-
-    public function getLastname($username)
-    {
-        $sql = self::$connection->prepare("SELECT `Last_name` FROM `users` WHERE `username`=?");
-        $sql->bind_param("s", $username);
-        $sql->execute(); //return an object
-        $items = array();
-        $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
-        return $items; //return an array
-    }
-
-    public function getInfoByUsername($username)
-    {
-        $sql = self::$connection->prepare("SELECT * FROM `users`,`roles` WHERE `username`=? AND `users`.`role_id`=`roles`.`role_id`");
-        $sql->bind_param("s", $username);
-        $sql->execute(); //return an object
-        $items = array();
-        $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
-        return $items; //return an array
-    }
-    public function updateUser($first_name, $last_name, $phone, $user_id)
-    {
-        $sql = self::$connection->prepare("UPDATE `users` SET `First_name`=?,`Last_name`=?,`phone`=? WHERE `user_id`=? ");
-        $sql->bind_param("ssii", $first_name, $last_name, $phone, $user_id);
-        return    $sql->execute(); //return an object
-
-    }
-    public function changePhoto($image, $user_id)
-    {
-        $sql = self::$connection->prepare("UPDATE `users` SET `image` = ? WHERE `user_id` = ?");
-        $sql->bind_param("si", $image, $user_id);
-        return $sql->execute(); //return an object
-    }
+    
     public function getUserById($user_id)
     {
         $sql = self::$connection->prepare("SELECT * FROM users WHERE user_id = " . $user_id);
