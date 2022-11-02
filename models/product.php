@@ -19,6 +19,26 @@
             return $item;
         }
 
+        //Truy vấn lấy ra tài khoản và mật khẩu trong bảng users
+        public function getUsers($mail, $password){
+            $sql = self::$connection->prepare("select *from users where mail = ? and password = ?");  
+            $sql->bind_param("ss",$mail, $password);  
+            $sql->execute();//return object
+            $item = array();
+            $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+            return $item;
+        }
+
+         //Truy vấn lấy ra mail trong bảng users
+         public function getMail($mail){
+            $sql = self::$connection->prepare("select *from users where mail = ?");  
+            $sql->bind_param("s",$mail);  
+            $sql->execute();//return object
+            $item = array();
+            $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+            return $item;
+        }
+
         //Lấy ra 3 sản phẩm điện thoại mới nhất
         public function get3ProductsPhone()
         {
@@ -89,5 +109,11 @@
             $item = array();
             $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
             return $item;
+        }
+
+        //Thêm tài khoản khi người dùng tạo tài khoản
+        public function insertUser($fullName, $mail, $pass1){
+            $sql = self::$connection->prepare("INSERT INTO `users`(`id`, `mail`, `user_name`, `password`, `role`, `date_create`) VALUES ('','$mail','$fullName','$pass1','','current_timestamp()')" );
+            return $sql;
         }
     }

@@ -1,4 +1,7 @@
-
+<?php      
+    require "config.php";
+    require "models/db.php";
+?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +30,7 @@
           <div class="slider-tab"></div>
        </div>
        <div class="form-inner">
-          <form action="" class="login" method="POST">
+          <form action="./lib/waypoints/authentication.php" class="login" method="POST">
              <div class="field">
                 <input type="text" id="user" name="user" placeholder="Địa Chỉ Email" required>
              </div>
@@ -46,18 +49,18 @@
              </div>
           </form>
 
-          <form action="#" class="signup" method="POST">
+          <form action="./lib/waypoints/auth_register.php" class="signup" method="POST">
              <div class="field">
-                <input class="full_name" type="text" placeholder="Nhập Họ Tên" required>
+                <input type="text" id="full_name" name="full_name" placeholder="Nhập Họ Tên" required>
              </div>
              <div class="field">
-                <input class="user_name" type="text" placeholder="Nhập Email" required>
+                <input type="text" name="mail" placeholder="Nhập Email" required>
              </div>
              <div class="field">
-                <input class="pass1" type="password" placeholder="Nhập Mật Khẩu" required>
+                <input type="password" name="pass1" placeholder="Nhập Mật Khẩu" required>
              </div>
              <div class="field">
-                <input class="pass2" type="password" placeholder="Nhập Lại Mật Khẩu" required>
+                <input type="password" name="pass2" placeholder="Nhập Lại Mật Khẩu" required>
              </div>
              <div class="field btn">
                 <div class="btn-layer"></div>
