@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php      
     require "../../config.php";
     require "../../models/db.php";
@@ -6,14 +7,24 @@
     $full_name = $_POST['full_name'];  
     $mail = $_POST['mail'];  
     $password = $_POST['pass'];
-      
+    
+    $check = 0; //giá trị dùng kiểm tra mail tồn tại hay không.
+
     $product = new Product;
     $products = $product->getAllUsers($mail);
     foreach($products as $value):
-        
+        //Nếu mail người dùng nhập đã tồn tại thì gán giá trị $check = 1 và thoát vòng lặp
         if($value['mail'] == $mail){  
-            ?>
-            <Style>h4 {
+            $check = 1;
+            break;
+        }
+
+    endforeach;
+
+    //Nếu mail tồn tại thì hiển thị thông báo
+    if($check == 1){
+        ?>
+        <Style>h4 {
                 color: red;
             }
             body {
@@ -48,9 +59,22 @@
                 <div class="btn-layer"></div>
                 <input type="submit"  value=" Thử Lại">
              </div>
-         </form>';
-        <?php 
-        }
-    endforeach;
-    
+         </form>'
+        <?php
+
+        //Nếu mail chưa tồn taại thì thực hiện thêm người dùng vào SQL và thực hiện đăng nhập.
+    }if($check == 0){
+
+        //Kết nối đến CSDL
+        $connect = mysqli_connect('localhost', 'root', '', 'nhom2');
+        //Thực hiện câu truy vấn thêm người dùng vào bảng users
+        $query = "INSERT INTO `users`(`id`, `mail`, `user_name`, `password`, `role`, `date_create`) VALUES ('','$mail','$full_name','$password','user',current_timestamp())";
+        mysqli_query ($connect ,$query);
+
+        // Lưu Session
+        $_SESSION['name'] = $mail;
+        //Chuyển hướng đến trang chủ
+        header("Location: /Nhom2_BE1_HK1_NH22-23/index.php");
+    }
     ?> 
+    

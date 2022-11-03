@@ -10,13 +10,12 @@
     $product = new Product;
     $products = $product->getUsers($mail, $password);
     foreach($products as $value):
-        
+        //Kiểm tra mail và password người dùng nhập có tồn tại hay không
         if($value['mail'] == $mail && $value['password'] == $password){  
-            header("Location: /Nhom2_BE1_HK1_NH22-23/index.php");
             // Lưu Session
             $_SESSION['name'] = $value['mail'];
-        }  
-         
+            header("Location: /Nhom2_BE1_HK1_NH22-23/index.php");
+        }     
     endforeach;    
     ?> 
             <Style>h4 {
