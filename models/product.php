@@ -29,6 +29,16 @@
             return $item;
         }
 
+         //Truy vấn lấy ra mail user trong bảng users
+         public function getAllUsers($mail){
+            $sql = self::$connection->prepare("select *from users where mail = ?");  
+            $sql->bind_param("s",$mail); 
+            $sql->execute();//return object
+            $item = array();
+            $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+            return $item;
+        }
+
          //Truy vấn lấy ra mail trong bảng users
          public function getMail($mail){
             $sql = self::$connection->prepare("select *from users where mail = ?");  

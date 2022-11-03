@@ -14,7 +14,7 @@
         if($value['mail'] == $mail && $value['password'] == $password){  
             header("Location: /Nhom2_BE1_HK1_NH22-23/index.php");
             // Lưu Session
-            $_SESSION['name'] = $value['user_name'];
+            $_SESSION['name'] = $value['mail'];
         }  
          
     endforeach;    

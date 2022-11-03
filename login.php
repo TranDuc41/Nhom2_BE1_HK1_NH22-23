@@ -57,10 +57,7 @@
                 <input type="text" name="mail" placeholder="Nhập Email" required>
              </div>
              <div class="field">
-                <input type="password" name="pass1" placeholder="Nhập Mật Khẩu" required>
-             </div>
-             <div class="field">
-                <input type="password" name="pass2" placeholder="Nhập Lại Mật Khẩu" required>
+                <input type="password" name="pass" placeholder="Nhập Mật Khẩu" required>
              </div>
              <div class="field btn">
                 <div class="btn-layer"></div>
