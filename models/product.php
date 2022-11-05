@@ -9,7 +9,7 @@
             $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
             return $item;
         }
-
+           // Lấy Ra Loại sản phẩm và hiển thị 
         public function getAllProtypes($type_id)
         {
             $sql = self::$connection->prepare("SELECT * FROM products where `type_id`= ?");
@@ -131,4 +131,14 @@
             $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
             return $item;
         }
+        //Lấy ra 20 sản phẩm mới nhất 
+        public function get20NewProducts()
+        {
+            $sql = self::$connection->prepare("SELECT * FROM products ORDER BY id DESC LIMIT 0,20");
+            $sql->execute(); //return an object
+            $items = array();
+            $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+            return $items; //return an array
+        }
+
     }
