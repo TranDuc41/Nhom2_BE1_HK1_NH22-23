@@ -130,7 +130,6 @@
             $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
             return $item;
         }
-<<<<<<< HEAD
         //Lấy ra 20 sản phẩm mới nhất 
         public function get20NewProducts()
         {
@@ -140,15 +139,4 @@
             $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
             return $items; //return an array
         }
-
-=======
-        // lấy ra 20 sản phẩm mới nhất
-        public function get20Products(){
-            $sql = self::$connection->prepare("SELECT * FROM products order by id desc LIMIT 20");
-            $sql->execute();//return object
-            $item = array();
-            $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
-            return $item;
-        }
->>>>>>> bf7a872a01a6f82219dc8ab652d9b6c2da2beafc
     }

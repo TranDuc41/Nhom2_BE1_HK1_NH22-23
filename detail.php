@@ -54,12 +54,21 @@ $protypes = $product->getAllProtypes($_GET['type_id']);
 			<div class="container">
 				<ul class="header-links pull-left">
 					<li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
-					<li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
-					<li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
+					<li><a href="#"><i class="fa fa-envelope-o"></i> Demo@email.com</a></li>
+					<li><a href="#"><i class="fa fa-map-marker"></i> Cao Đẳng Công Nghệ Thủ Đức</a></li>
 				</ul>
 				<ul class="header-links pull-right">
-					<li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
-					<li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+					<!-- <li><a href="#"><i class="fa fa-dollar"></i> USD</a></li> -->
+					<?php
+					// Hiển thị thông tin lưu trong Session
+					// phải kiểm tra có tồn tại không trước khi hiển thị nó ra
+					if (isset($_SESSION['name'])) {
+						echo '<li><a href="./logout.php">Đăng xuất</a></li>';
+					} else {
+						echo '<li><a href="./login.php">Đăng nhập</a></li>';
+					}
+
+					?>
 				</ul>
 			</div>
 		</div>
