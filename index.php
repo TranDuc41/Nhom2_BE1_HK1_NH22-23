@@ -428,7 +428,7 @@ $getAllProducts = $product->getAllProducts();
 														<div class="products-slick" data-nav="#slick-nav-2">
 															<!-- product -->
 															<?php
-																$getAllProducts = $product->getAllProducts();
+																$getAllProducts = $product->get20Products();
 															?>
 															<?php foreach($getAllProducts as $value): ?>
 															<div class="product">

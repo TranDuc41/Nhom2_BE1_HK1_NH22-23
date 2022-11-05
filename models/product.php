@@ -71,7 +71,6 @@
             $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
             return $item;
         }
-
         //Lấy ra 3 sản phẩm điện thoại sau 3 sản phẩm mới nhất
         public function getProductsPhone()
         {
@@ -126,6 +125,14 @@
             $sql = self::$connection->prepare("SELECT * FROM products WHERE type_id = ? order by id desc LIMIT 3, 3" );
             $varibles = 4;
             $sql->bind_param("i",$varibles);
+            $sql->execute();//return object
+            $item = array();
+            $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+            return $item;
+        }
+        // lấy ra 20 sản phẩm mới nhất
+        public function get20Products(){
+            $sql = self::$connection->prepare("SELECT * FROM products order by id desc LIMIT 20");
             $sql->execute();//return object
             $item = array();
             $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
