@@ -139,4 +139,14 @@
             $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
             return $items; //return an array
         }
+
+        //Lấy ra tất cả sản phẩm nổi bật 
+        public function getAllFeature0()
+        {
+            $sql = self::$connection->prepare("SELECT * FROM products where feature = 0");
+            $sql->execute(); //return an object
+            $items = array();
+            $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+            return $items; //return an array
+        }
     }
