@@ -336,6 +336,16 @@ $getAllProducts = $product->getAllProducts();
 							<div id="slick-nav-1" class="products-slick-nav"></div>
 						</div>
 						<!-- /tab -->
+						</div>
+						</div>
+					</div>
+					<!-- /Products tab & slick -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
 
 
 		<!-- HOT DEAL SECTION -->
