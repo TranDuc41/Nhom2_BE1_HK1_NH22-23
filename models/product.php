@@ -9,6 +9,17 @@
             $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
             return $item;
         }
+
+        public function getAllProtypes($type_id)
+        {
+            $sql = self::$connection->prepare("SELECT * FROM products where `type_id`= ?");
+            $sql->bind_param("i",$type_id);
+            $sql->execute();//return object
+            $item = array();
+            $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+            return $item;
+        }
+
         public function getProductById($id)
         {
             $sql = self::$connection->prepare("SELECT * FROM products WHERE id = ?");
