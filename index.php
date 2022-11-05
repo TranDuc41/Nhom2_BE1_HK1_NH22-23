@@ -291,8 +291,7 @@ $getAllProducts = $product->getAllProducts();
 							<div id="tab1" class="tab-pane active">
 								<div class="products-slick" data-nav="#slick-nav-1">
 									<?php
-									$type_id = 1;
-									$get20NewProducts = $product->get20NewProducts($type_id); ?>
+									$get20NewProducts = $product->get20NewProducts(); ?>
 									<?php foreach ($get20NewProducts as $value) : ?>
 										<!-- product -->
 										<div class="product">
@@ -327,7 +326,7 @@ $getAllProducts = $product->getAllProducts();
 										</div>
 										<!-- /product -->
 										
-									<?php endforeach ?>
+									<?php endforeach; ?>
 								</div>
 								<div id="slick-nav-1" class="products-slick-nav"></div>
 							</div>
