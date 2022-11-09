@@ -32,6 +32,7 @@ $get3ProductsPhone = $product->get3ProductsPhone();
 </head>
 
 <body>
+    <?php include"./views/header.php"?>
 
     <div class="single-product-area">
         <div class="zigzag-bottom"></div>
@@ -151,3 +152,4 @@ $get3ProductsPhone = $product->get3ProductsPhone();
         </div>
     </div>
     </div>
+    <?php include"./views/footer.php"?>
