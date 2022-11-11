@@ -1342,6 +1342,7 @@ textarea.input {
 
 .store-pagination {
   float: right;
+  margin-top: 66px;
 }
 
 .store-pagination li {
