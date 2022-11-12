@@ -2,8 +2,11 @@
 require "config.php";
 require "models/db.php";
 require "models/product.php";
+require "models/protype.php";
 $product = new Product;
 $getAllProducts = $product->getAllProducts();
+$protype = new Protype;
+$protypes = $protype->getProtypes();
 ?>
 <?php include "./views/header.php" ?>
 
@@ -19,60 +22,19 @@ $getAllProducts = $product->getAllProducts();
 				<div class="aside">
 					<h3 class="aside-title">Categories</h3>
 					<div class="checkbox-filter">
+					<?php
 
+							foreach ($protypes as $value) :
+							?>
 						<div class="input-checkbox">
-							<input type="checkbox" id="category-1">
-							<label for="category-1">
+							<input type="checkbox" id="category-<?php echo $value['type_id'] ?>">
+							<label for="category-<?php echo $value['type_id'] ?>">
 								<span></span>
-								Laptops
-								<small>(120)</small>
+								<?php echo $value['type_name'] ?>
+								<!-- <small>(120)</small> -->
 							</label>
 						</div>
-
-						<div class="input-checkbox">
-							<input type="checkbox" id="category-2">
-							<label for="category-2">
-								<span></span>
-								Smartphones
-								<small>(740)</small>
-							</label>
-						</div>
-
-						<div class="input-checkbox">
-							<input type="checkbox" id="category-3">
-							<label for="category-3">
-								<span></span>
-								Cameras
-								<small>(1450)</small>
-							</label>
-						</div>
-
-						<div class="input-checkbox">
-							<input type="checkbox" id="category-4">
-							<label for="category-4">
-								<span></span>
-								Accessories
-								<small>(578)</small>
-							</label>
-						</div>
-
-						<div class="input-checkbox">
-							<input type="checkbox" id="category-5">
-							<label for="category-5">
-								<span></span>
-								Laptops
-								<small>(120)</small>
-							</label>
-						</div>
-
-						<div class="input-checkbox">
-							<input type="checkbox" id="category-6">
-							<label for="category-6">
-								<span></span>
-								Smartphones
-								<small>(740)</small>
-							</label>
-						</div>
+						<?php endforeach; ?>
 					</div>
 				</div>
 				<!-- /aside Widget -->
@@ -101,95 +63,49 @@ $getAllProducts = $product->getAllProducts();
 				<div class="aside">
 					<h3 class="aside-title">Brand</h3>
 					<div class="checkbox-filter">
+					<?php
+							$product = new Product;
+							$manufactures = $product->getAllManufactures();
+
+							foreach ($manufactures as $value) :
+							?>
 						<div class="input-checkbox">
-							<input type="checkbox" id="brand-1">
-							<label for="brand-1">
+							<input type="checkbox" id="brand-<?php echo $value['manu_id'] ?>">
+							<label for="brand-<?php echo $value['manu_id'] ?>">
 								<span></span>
-								SAMSUNG
-								<small>(578)</small>
+								<?php echo $value['manu_name'] ?>
+								<!-- <small>(578)</small> -->
 							</label>
 						</div>
-						<div class="input-checkbox">
-							<input type="checkbox" id="brand-2">
-							<label for="brand-2">
-								<span></span>
-								LG
-								<small>(125)</small>
-							</label>
-						</div>
-						<div class="input-checkbox">
-							<input type="checkbox" id="brand-3">
-							<label for="brand-3">
-								<span></span>
-								SONY
-								<small>(755)</small>
-							</label>
-						</div>
-						<div class="input-checkbox">
-							<input type="checkbox" id="brand-4">
-							<label for="brand-4">
-								<span></span>
-								SAMSUNG
-								<small>(578)</small>
-							</label>
-						</div>
-						<div class="input-checkbox">
-							<input type="checkbox" id="brand-5">
-							<label for="brand-5">
-								<span></span>
-								LG
-								<small>(125)</small>
-							</label>
-						</div>
-						<div class="input-checkbox">
-							<input type="checkbox" id="brand-6">
-							<label for="brand-6">
-								<span></span>
-								SONY
-								<small>(755)</small>
-							</label>
-						</div>
+						<?php endforeach; ?>
 					</div>
 				</div>
 				<!-- /aside Widget -->
 
 				<!-- aside Widget -->
 				<div class="aside">
-					<h3 class="aside-title">Top selling</h3>
-					<div class="product-widget">
-						<div class="product-img">
-							<img src="./img/product01.png" alt="">
-						</div>
-						<div class="product-body">
-							<p class="product-category">Category</p>
-							<h3 class="product-name"><a href="#">product name goes here</a></h3>
-							<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-						</div>
-					</div>
+					<h3 class="aside-title">New Laptops</h3>
+					<?php
+					$product = new Product;
+					$products = $product->get3ProductsLaptop();
 
-					<div class="product-widget">
-						<div class="product-img">
-							<img src="./img/product02.png" alt="">
+					foreach ($products as $value) :
+					?>
+						<div class="product-widget">
+							<div class="product-img">
+								<img src="./img/<?php echo $value['pro_image'] ?>" alt="">
+							</div>
+							<div class="product-body">
+								<p class="product-category">Category</p>
+								<h3 class="product-name"><a href="detail.php?id=<?php echo $value['id'] ?>&type_id=<?php echo $value['type_id'] ?>"><?php echo $value['name'] ?></a></h3>
+								<h4 class="product-price"><?php echo number_format($value['price']) ?> VND 
+								<!-- <del class="product-old-price">$990.00</del> -->
+							</h4>
+							</div>
 						</div>
-						<div class="product-body">
-							<p class="product-category">Category</p>
-							<h3 class="product-name"><a href="#">product name goes here</a></h3>
-							<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-						</div>
-					</div>
-
-					<div class="product-widget">
-						<div class="product-img">
-							<img src="./img/product03.png" alt="">
-						</div>
-						<div class="product-body">
-							<p class="product-category">Category</p>
-							<h3 class="product-name"><a href="#">product name goes here</a></h3>
-							<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-						</div>
-					</div>
+					<?php endforeach ?>
 				</div>
-				<!-- /aside Widget -->
+			<!-- /aside Widget -->
 			</div>
 			<!-- /ASIDE -->
 
@@ -209,10 +125,11 @@ $getAllProducts = $product->getAllProducts();
 						<label>
 							Show:
 							<select class="input-select">
-								<option value="0">20</option>
-								<option value="1">50</option>
+								<option value="0">3</option>
+								<option value="1">6</option>
 							</select>
 						</label>
+						
 					</div>
 					<ul class="store-grid">
 						<li class="active"><i class="fa fa-th"></i></li>

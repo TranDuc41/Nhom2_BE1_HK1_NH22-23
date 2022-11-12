@@ -4,7 +4,6 @@ require "models/db.php";
 require "models/product.php";
 $product = new Product;
 $getAllProducts = $product->getAllProducts();
-$get3ProductsPhone = $product->get3ProductsPhone();
 ?>
 
 <!-- Google Fonts -->

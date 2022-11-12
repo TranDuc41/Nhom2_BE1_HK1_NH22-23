@@ -153,7 +153,17 @@
         //Lấy danh sách san phẩm
         public function getProducts($start, $limit)
         {
-            $sql = self::$connection->prepare("SELECT * FROM products LIMIT $start, $limit");
+            $sql = self::$connection->prepare("SELECT * FROM products order by id desc LIMIT $start, $limit");
+            $sql->execute(); //return an object
+            $items = array();
+            $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+            return $items; //return an array
+        }
+
+        //Lấy danh sách hãng
+        public function getAllManufactures()
+        {
+            $sql = self::$connection->prepare("SELECT * FROM manufactures");
             $sql->execute(); //return an object
             $items = array();
             $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
