@@ -53,7 +53,7 @@ $protypes = $product->getAllProtypes($_GET['type_id']);
 									<i class="fa fa-shopping-cart"></i>
 									</a>
 								</button>
-								<button class="btn btn-primary btn-rounded">Buy Now</button>
+								<button class="btn btn-primary btn-rounded"><a style="text-decoration: none;" href="check.php?id=<?php echo $value['id'] ?>"><i class="fa fa-credit-card"></i> Buy Now</a></button>
 							</div>
 				<?php endif;
 					endforeach;

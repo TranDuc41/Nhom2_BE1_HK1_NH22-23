@@ -2,11 +2,9 @@
 session_start();
 require "config.php";
 require "models/db.php";
-require "models/order.php";
 require "models/user.php";
 require "models/product.php";
 
-$order = new Order;
 $user = new User;
 $product = new Product;
 
@@ -20,15 +18,5 @@ if (isset($_POST['submit'])) {
         $pro_name = $value['name'];
         $price = $value['price'];
     }
-    $quantity = $_SESSION['cart'][$_GET['id']];
-    $pro_id = $_GET['id'];
-    $total = $price * $quantity;
-    $address = $_POST['address'];
-    $note = $_POST['note'];
-    $phone = $_POST['phone'];
-
-    $order->addOrder($user_id, $pro_id, $pro_name, $quantity, $address, $phone,  $total, $note);
-
-    unset($_SESSION['cart'][$_GET['id']]);
     header('location:orders.php?status=s');
 }

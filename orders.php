@@ -9,15 +9,15 @@ $getAllProducts = $product->getAllProducts();?>
 if(isset($_GET['status'])){
     if ($_GET['status']=='sd') {
         echo "<script> alert('Hủy đơn hàng thành công'); </script>";
-        echo '<script>window.history.pushState({}, document.title, "/" + "4/Nhom2_BE1_HK1_NH22-23/orders.php");</script>';
+        echo '<script>window.history.pushState({}, document.title, "/" + "Nhom2_BE1_HK1_NH22-23/orders.php");</script>';
     }
     if($_GET['status']=='s'){
         echo "<script> alert('Đặt hàng thành công'); </script>";
-        echo '<script>window.history.pushState({}, document.title, "/" + "4/Nhom2_BE1_HK1_NH22-23/orders.php");</script>';
+        echo '<script>window.history.pushState({}, document.title, "/" + "Nhom2_BE1_HK1_NH22-23/orders.php");</script>';
     }
     if($_GET['status']=='sr'){
         echo "<script> alert('Nhận hàng thành công'); </script>";
-        echo '<script>window.history.pushState({}, document.title, "/" + "4/Nhom2_BE1_HK1_NH22-23/orders.php");</script>';
+        echo '<script>window.history.pushState({}, document.title, "/" + "Nhom2_BE1_HK1_NH22-23/orders.php");</script>';
     }
 }
 ?>

@@ -3,7 +3,7 @@ class User extends Db
 {
     public function getRoleId($username)
     {
-        $sql = self::$connection->prepare("SELECT `role_id` FROM `users` WHERE `username` =?");
+        $sql = self::$connection->prepare("SELECT `role` FROM `users` WHERE `user_name` =?");
         $sql->bind_param("s", $username);
         $sql->execute(); //return an object
         $items = array();
@@ -12,7 +12,7 @@ class User extends Db
     }
     public function getInfoByUsername($username)
     {
-        $sql = self::$connection->prepare("SELECT * FROM `users`,`roles` WHERE `user_name`=? AND `users`.`id`=`roles`.`role_id`");
+        $sql = self::$connection->prepare("SELECT * FROM `users` WHERE `user_name`=?");
         $sql->bind_param("s", $username);
         $sql->execute(); //return an object
         $items = array();
