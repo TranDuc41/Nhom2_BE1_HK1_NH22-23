@@ -1,8 +1,11 @@
-<?php 
+<?php
 session_start();
-if(isset($_GET['id'])){
- $type_id = $_GET['type_id'];
-    unset($_SESSION['cart'][$_GET['id']]);
-   
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    //Kết nối đến CSDL
+    $connect = mysqli_connect('localhost', 'root', '', 'nhom2');
+    //Thực hiện câu truy vấn thêm người dùng vào bảng users
+    $query = "DELETE FROM `cart` WHERE id = '$id'";
+    mysqli_query($connect, $query);
 }
-header('location:cart.php?type_id='.$type_id);
+header('location:cart.php');

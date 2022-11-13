@@ -3,7 +3,20 @@ require "config.php";
 require "models/db.php";
 require "models/product.php";
 $product = new Product;
-$getAllProducts = $product->getAllProducts();
+
+//Nếu có type_id 
+if (isset($_GET['type_id'])) {
+    $getCartByIds = $product->getCartById($id = $_GET['type_id']);
+} else {
+    require "models/protype.php";
+    $protype = new Protype;
+    $getIdUser = $protype->getIdUser($mail = $_SESSION['name']);
+    foreach ($getIdUser as $value) :
+        //gán id người dùng vào biến
+        $get = $value['id'];
+    endforeach;
+    $getCartByIds = $product->getCartById($id = $get);
+}
 ?>
 
 <!-- Google Fonts -->
@@ -31,7 +44,7 @@ $getAllProducts = $product->getAllProducts();
 </head>
 
 <body>
-    <?php include"./views/header.php"?>
+    <?php include "./views/header.php" ?>
 
     <div class="single-product-area">
         <div class="zigzag-bottom"></div>
@@ -54,55 +67,48 @@ $getAllProducts = $product->getAllProducts();
                                     </thead>
                                     <?php $total = 0;
                                     ?>
-                                    <?php if (isset($_SESSION['cart'])) : ?>
-                                        <?php foreach ($_SESSION['cart'] as $key => $qty) : ?>
-                                            <?php $getAllProducts =  $product->getAllProducts();
+                                    <?php foreach ($getCartByIds as $value) : ?>
+                                        <tbody>
 
-                                            ?>
-                                            <?php foreach ($getAllProducts as $value) : ?>
-                                                <?php if ($value['id'] == $key) : ?>
-                                                    <tbody>
-                                                       
-                                                            <tr class="cart_item">
-                                                                <td class="product-remove">
-                                                                    <a title="Remove this item" class="remove" href="delcart.php?id=<?php echo $key ?>&type_id=<?php echo $_GET['type_id'] ?>">×</a>
-                                                                </td>
+                                            <tr class="cart_item">
+                                                <td class="product-remove">
+                                                    <a title="Remove this item" class="remove" href="delcart.php?id=<?php echo $value['id'] ?>">×</a>
+                                                </td>
 
-                                                                <td class="product-thumbnail">
-                                                                    <a href="detail.php?id=<?php echo $value['id'] ?>&type_id=<?php echo $value['type_id'] ?>"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="img/<?php echo $value['pro_image'] ?>"></a>
-                                                                </td>
+                                                <td class="product-thumbnail">
+                                                    <a href=""><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="img/<?php echo $value['image'] ?>"></a>
+                                                </td>
 
-                                                                <td class="product-name" style="max-width: 440px;">
-                                                                    <a href="detail.php?id=<?php echo $value['id'] ?>&type_id=<?php echo $value['type_id'] ?>"><?php echo $value['name'] ?></a>
-                                                                </td>
+                                                <td class="product-name" style="max-width: 440px;">
+                                                    <!-- Xử lý lấy ra id và type_id sản phẩm theo name -->
+                                                    <?php $getIdAndType = $product->getIdAndType($value['name']) ?>
+                                                    <?php foreach ($getIdAndType as $values) : ?>
+                                                        <a href="detail.php?id=<?php echo $values['id'] ?>&type_id=<?php echo $values['type_id'] ?>"><?php echo $value['name'] ?></a>
+                                                    <?php endforeach;
+                                                    ?>
+                                                </td>
 
-                                                                <td class="product-price">
-                                                                    <span class="amount"><?php echo number_format($value['price']) ?>VND</span>
-                                                                </td>
+                                                <td class="product-price">
+                                                    <span class="amount"><?php echo number_format($value['price']) ?>VND</span>
+                                                </td>
 
-                                                                <td class="product-quantity">
-                                                                    <div class="quantity buttons_added">
-                                                                        <!--     <input type="button" class="minus" value="-"> -->
-                                                                        <a href="subtractqty.php?id=<?php echo $value['id'] ?>&type_id=<?php echo $_GET['type_id'] ?>"><input type="button" class="minus" value="-"></a>
-                                                                        <input type="text" size="1" class="input-text qty text" title="Qty" value="<?php echo $qty ?>">
-                                                                        <a href="addqty.php?id=<?php echo $value['id'] ?>&type_id=<?php echo $_GET['type_id'] ?>"><input type="button" class="plus" value="+"></a>
-                                                                        <!--    <input type="button" class="plus" value="+"> -->
-                                                                    </div>
-                                                                </td>
+                                                <td class="product-quantity">
+                                                    <div class="quantity buttons_added">
+                                                        <!--     <input type="button" class="minus" value="-"> -->
+                                                        <a href="subtractqty.php?id=<?php echo $value['id'] ?>&sl=<?php echo ($value['soLuong'] - 1) ?>"><input type="button" class="minus" value="-"></a>
+                                                        <input type="text" size="1" class="input-text qty text" title="Qty" value="<?php echo $value['soLuong'] ?>">
+                                                        <a href="addqty.php?id=<?php echo $value['id'] ?>&sl=<?php echo ($value['soLuong'] + 1) ?>"><input type="button" class="plus" value="+"></a>
+                                                        <!--    <input type="button" class="plus" value="+"> -->
+                                                    </div>
+                                                </td>
 
-                                                                <td class="product-subtotal">
-                                                                    <span class="amount"><?php echo number_format($value['price'] * $qty);
-                                                                                            $total += $value['price'] * $qty; ?>VND</span>
-                                                                </td>
-                                                            </tr>
-
-                                                        
-                                                        
-                                                    </tbody>
-                                                <?php endif ?>
-                                            <?php endforeach ?>
-                                        <?php endforeach ?>
-                                    <?php endif ?>
+                                                <td class="product-subtotal">
+                                                    <span class="amount"><?php echo number_format($value['price'] * $value['soLuong']);
+                                                                            $total += $value['price'] * $value['soLuong']; ?>VND</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    <?php endforeach; ?>
 
                                 </table>
                             </form>
@@ -140,15 +146,15 @@ $getAllProducts = $product->getAllProducts();
 
 
 
-                                </div>
-                            </div>
                         </div>
-
-
                     </div>
                 </div>
+
+
             </div>
         </div>
     </div>
     </div>
-    <?php include"./views/footer.php"?>
+    </div>
+    </div>
+    <?php include "./views/footer.php" ?>

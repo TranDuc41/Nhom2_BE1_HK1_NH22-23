@@ -169,4 +169,26 @@
             $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
             return $items; //return an array
         }
+
+        //Lấy tất cả trong bảng cart
+        public function getCartById($id)
+        {
+            $sql = self::$connection->prepare("SELECT * FROM cart WHERE user_id = ?");
+            $sql->bind_param("i",$id);
+            $sql->execute();//return object
+            $item = array();
+            $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+            return $item;
+        }
+
+        //Lấy tất cả trong bảng cart
+        public function getIdAndType($name)
+        {
+            $sql = self::$connection->prepare("SELECT `id`, `type_id` FROM `products` WHERE `name` = ?");
+            $sql->bind_param("s",$name);
+            $sql->execute();//return object
+            $item = array();
+            $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+            return $item;
+        }
     }
