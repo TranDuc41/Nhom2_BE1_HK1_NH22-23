@@ -157,13 +157,8 @@
 										<h5>SUBTOTAL: <?php echo number_format($totalPrice) ?></h5>
 									</div>
 									<div class="cart-btns">
-<<<<<<< HEAD
 										<a href="cart.php">View Cart</a>
 										<a href="#">Checkout <i class="fa fa-arrow-circle-right"></i></a>
-=======
-										<a href="cart.php?type_id=1">View Cart</a>
-										<a href="orders.php">Checkout <i class="fa fa-arrow-circle-right"></i></a>
->>>>>>> 57dd33a9a60d081b559378fb4b0e4f56b93e2342
 									</div>
 								</div>
 							</div>
