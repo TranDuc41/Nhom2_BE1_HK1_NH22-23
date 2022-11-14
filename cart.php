@@ -109,7 +109,7 @@ if (isset($_GET['type_id'])) {
                                                 <td class="actions" colspan="6">
 
                                                     <div class="add-to-cart">
-                                                        <button class="add-to-cart-btn"><a style="text-decoration: none;" href="check.php?id=<?php echo $value['id'] ?>"><i class="fa fa-credit-card"></i> Thanh toán</a></button>
+                                                        <button class="add-to-cart-btn"><a style="text-decoration: none;" href="orders.php?id=<?php echo $value['id'] ?>"><i class="fa fa-credit-card"></i> Thanh toán</a></button>
                                                     </div>
                                                 </td>
                                             </tr>

@@ -99,7 +99,7 @@ $getInfoByUsername =	$user->getInfoByUsername($_SESSION['user']);
 			foreach ($getAllProducts as $value) :
 				if ($value['id'] == $_GET['id']) : ?>
 					<div class="order-col">
-						<div><?php echo $_SESSION['cart'][$value['id']] ?>x <?php echo $value['name'] ?></div>
+						<div> <?php echo $value['name'] ?></div>
 						<div style="max-width:440px;"><?php echo number_format($value['price']) ?> VND</div>
 					</div>
 
@@ -110,7 +110,7 @@ $getInfoByUsername =	$user->getInfoByUsername($_SESSION['user']);
 	</div>
 	<div class="order-col">
 		<div><strong>TỔNG</strong></div>
-		<div><strong class="order-total"><?php echo number_format($_SESSION['cart'][$value['id']] * $value['price']) ?>VND</strong></div>
+		<div><strong class="order-total"><?php echo number_format($value['price']) ?>VND</strong></div>
 	</div>
 </div>
 <?php
