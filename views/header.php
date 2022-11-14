@@ -82,17 +82,17 @@
 					</div>
 					<!-- /LOGO -->
 
-					<!-- SEARCH BAR -->
-					<div class="col-md-6">
+						<!-- SEARCH BAR -->
+						<div class="col-md-6">
 						<div class="header-search">
-							<form action="" method="POST">
+						<form method="get" action="result.php">
 								<select class="input-select">
 									<option value="0">All Categories</option>
 									<option value="1">Category 01</option>
 									<option value="1">Category 02</option>
 								</select>
-								<input class="input" placeholder="Search here">
-								<button class="search-btn">Search</button>
+								<input class="input" placeholder="Search here" name="keyword">
+								<button type="submit" class="search-btn">Search</button>
 							</form>
 						</div>
 					</div>
