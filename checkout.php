@@ -7,7 +7,6 @@ $user = new User;
 $product = new Product;
 $getAllProducts = $product->getAllProducts();
 $getProductById = $product->getProductById($_GET['id']);
-$getInfoByUsername =	$user->getInfoByUsername($_SESSION['user']);
 ?>
 <?php include"./views/header.php"?>
 
