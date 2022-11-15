@@ -22,18 +22,18 @@ $protypes = $protype->getProtypes();
 				<div class="aside">
 					<h3 class="aside-title">Categories</h3>
 					<div class="checkbox-filter">
-					<?php
+						<?php
 
-							foreach ($protypes as $value) :
-							?>
-						<div class="input-checkbox">
-							<input type="checkbox" id="category-<?php echo $value['type_id'] ?>">
-							<label for="category-<?php echo $value['type_id'] ?>">
-								<span></span>
-								<?php echo $value['type_name'] ?>
-								<!-- <small>(120)</small> -->
-							</label>
-						</div>
+						foreach ($protypes as $value) :
+						?>
+							<div class="input-checkbox">
+								<input type="checkbox" id="category-<?php echo $value['type_id'] ?>">
+								<label for="category-<?php echo $value['type_id'] ?>">
+									<span></span>
+									<?php echo $value['type_name'] ?>
+									<!-- <small>(120)</small> -->
+								</label>
+							</div>
 						<?php endforeach; ?>
 					</div>
 				</div>
@@ -63,20 +63,20 @@ $protypes = $protype->getProtypes();
 				<div class="aside">
 					<h3 class="aside-title">Brand</h3>
 					<div class="checkbox-filter">
-					<?php
-							$product = new Product;
-							$manufactures = $product->getAllManufactures();
+						<?php
+						$product = new Product;
+						$manufactures = $product->getAllManufactures();
 
-							foreach ($manufactures as $value) :
-							?>
-						<div class="input-checkbox">
-							<input type="checkbox" id="brand-<?php echo $value['manu_id'] ?>">
-							<label for="brand-<?php echo $value['manu_id'] ?>">
-								<span></span>
-								<?php echo $value['manu_name'] ?>
-								<!-- <small>(578)</small> -->
-							</label>
-						</div>
+						foreach ($manufactures as $value) :
+						?>
+							<div class="input-checkbox">
+								<input type="checkbox" id="brand-<?php echo $value['manu_id'] ?>">
+								<label for="brand-<?php echo $value['manu_id'] ?>">
+									<span></span>
+									<?php echo $value['manu_name'] ?>
+									<!-- <small>(578)</small> -->
+								</label>
+							</div>
 						<?php endforeach; ?>
 					</div>
 				</div>
@@ -98,14 +98,14 @@ $protypes = $protype->getProtypes();
 							<div class="product-body">
 								<p class="product-category">Category</p>
 								<h3 class="product-name"><a href="detail.php?id=<?php echo $value['id'] ?>&type_id=<?php echo $value['type_id'] ?>"><?php echo $value['name'] ?></a></h3>
-								<h4 class="product-price"><?php echo number_format($value['price']) ?> VND 
-								<!-- <del class="product-old-price">$990.00</del> -->
-							</h4>
+								<h4 class="product-price"><?php echo number_format($value['price']) ?> VND
+									<!-- <del class="product-old-price">$990.00</del> -->
+								</h4>
 							</div>
 						</div>
 					<?php endforeach ?>
 				</div>
-			<!-- /aside Widget -->
+				<!-- /aside Widget -->
 			</div>
 			<!-- /ASIDE -->
 
@@ -129,7 +129,7 @@ $protypes = $protype->getProtypes();
 								<option value="1">6</option>
 							</select>
 						</label>
-						
+
 					</div>
 					<ul class="store-grid">
 						<li class="active"><i class="fa fa-th"></i></li>
@@ -163,46 +163,46 @@ $protypes = $protype->getProtypes();
 				$start = ($current_page - 1) * $limit;
 
 				// Có limit và start truy vấn CSDL lấy danh sách sân phẩm
-				$getProducts = $product->getProducts($start, $limit);
-
-				foreach ($getProducts as $value) : ?>
-					<div class="col-md-4 col-xs-6">
-						<div class="product">
-							<div class="product-img">
-								<img src="./img/<?php echo $value['pro_image'] ?>" alt="">
-								<div class="product-label">
-									<!-- <span class="sale">-30%</span> -->
-									<!-- <span class="new">NEW</span> -->
+				$getProducts = $product->getProducts($start, $limit); ?>
+				<div class="row">
+					<?php foreach ($getProducts as $value) : ?>
+						<div class="col-md-4 col-xs-6">
+							<div class="product">
+								<div class="product-img">
+									<img src="./img/<?php echo $value['pro_image'] ?>" alt="">
+									<div class="product-label">
+										<!-- <span class="sale">-30%</span> -->
+										<!-- <span class="new">NEW</span> -->
+									</div>
 								</div>
+								<div class="product-body">
+									<!-- <p class="product-category">Category</p> -->
+									<h3 class="product-name"><a href="detail.php?id=<?php echo $value['id'] ?>&type_id=<?php echo $value['type_id'] ?>"><?php echo $value['name'] ?></a></h3>
+									<h4 class="product-price"><?php echo number_format($value['price']) ?>VND
+										<!-- <del class="product-old-price">$990.00</del> -->
+									</h4>
+									<div class="product-rating">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+									</div>
+									<div class="product-btns">
+										<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+										<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+										<button class="quick-view"><a href="detail.php?id=<?php echo $value['id'] ?>&type_id=<?php echo $value['type_id'] ?>"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></a></button>
+									</div>
+								</div>
+								<a href="addcart.php?id=<?php echo $value['id'] ?>&type_id=<?php echo $value['type_id'] ?>">
+									<div class="add-to-cart">
+										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>ADD TO CART</button>
+									</div>
+								</a>
 							</div>
-							<div class="product-body">
-								<!-- <p class="product-category">Category</p> -->
-								<h3 class="product-name"><a href="detail.php?id=<?php echo $value['id'] ?>&type_id=<?php echo $value['type_id'] ?>"><?php echo $value['name'] ?></a></h3>
-								<h4 class="product-price"><?php echo number_format($value['price']) ?>VND
-									<!-- <del class="product-old-price">$990.00</del> -->
-								</h4>
-								<div class="product-rating">
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-								</div>
-								<div class="product-btns">
-									<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-									<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-									<button class="quick-view"><a href="detail.php?id=<?php echo $value['id'] ?>&type_id=<?php echo $value['type_id'] ?>"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></a></button>
-								</div>
-							</div>
-							<a href="addcart.php?id=<?php echo $value['id'] ?>&type_id=<?php echo $value['type_id'] ?>">
-								<div class="add-to-cart">
-									<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>ADD TO CART</button>
-								</div>
-							</a>
 						</div>
-					</div>
-				<?php endforeach; ?>
-
+					<?php endforeach; ?>
+				</div>
 				<ul class="store-pagination">
 					<?php
 					require_once 'Pagination.php';
