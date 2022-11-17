@@ -34,7 +34,7 @@ if (isset($_SESSION['name'])) {
         //Kết nối đến CSDL
         $connect = mysqli_connect('localhost', 'root', '', 'nhom2');
         //Thực hiện câu truy vấn thêm nội dung bảng cart
-        $query = "INSERT INTO `cart`(`id`, `user_id`, `product_id`, `image`, `price`, `name`, `soLuong`) VALUES ('','$get','$id','$image','$price','$name','1')";
+        $query = "INSERT INTO `cart`(`user_id`, `product_id`, `image`, `price`, `name`, `soLuong`) VALUES ('$get','$id','$image','$price','$name','1')";
         mysqli_query($connect, $query);
 
         if (isset($_GET['type_id'])) {

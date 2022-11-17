@@ -14,7 +14,11 @@
         if($value['mail'] == $mail && $value['password'] == $password){  
             // Lưu Session
             $_SESSION['name'] = $value['mail'];
+            if($value['role'] == "user"){
             header("Location: /Nhom2_BE1_HK1_NH22-23/index.php");
+            }else if($value['role'] == "admin"){
+                header("Location: /Nhom2_BE1_HK1_NH22-23/Admin");
+            }
         }     
     endforeach;    
     ?> 
