@@ -20,4 +20,26 @@ class User extends Db
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $items; //return an array
     }
+
+    //Lấy ra tất cả khách hàng(mới -> cũ)
+    public function getAllUser($role)
+    {
+        $sql = self::$connection->prepare("SELECT * FROM `users` WHERE `role`=? ORDER BY id DESC");
+        $sql->bind_param("s", $role);
+        $sql->execute(); //return an object
+        $items = array();
+        $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $items; //return an array
+    }
+
+    //Lấy ra 6 khách hàng mới nhất
+    public function get6UserNew($role)
+    {
+        $sql = self::$connection->prepare("SELECT * FROM `users` WHERE `role`=? ORDER BY id DESC LIMIT 0,6");
+        $sql->bind_param("s", $role);
+        $sql->execute(); //return an object
+        $items = array();
+        $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $items; //return an array
+    }
 }
