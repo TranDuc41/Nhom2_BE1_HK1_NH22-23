@@ -4,6 +4,7 @@ require "../models/db.php";
 require "../models/user.php";
 $user = new User;
 $getUser = $user->getUser($name = $_SESSION['name']);
+$section =  "quan-ly-bao-cao.php"
 ?>
 <!DOCTYPE html>
 <html lang="en">

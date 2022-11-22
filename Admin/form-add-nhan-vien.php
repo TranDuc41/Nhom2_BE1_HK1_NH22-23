@@ -201,7 +201,7 @@ $getUser = $user->getUser($name = $_SESSION['name']);
             </div>
         </div>
         <button class="btn btn-save" type="button">Lưu lại</button>
-        <a class="btn btn-cancel" href="/doc/table-data-table.html">Hủy bỏ</a>
+        <a class="btn btn-cancel" href="./table-data-table.php">Hủy bỏ</a>
       </div>
 
   </main>

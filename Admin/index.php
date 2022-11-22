@@ -9,6 +9,7 @@ $getUser = $user->getUser($name = $_SESSION['name']);
 $getAllProduct = $product->getAllProducts();
 $getAllUser = $user->getAllUser($role = "user");
 $get6UserNew = $user->get6UserNew($role = "user");
+$section =  "index.php"
 ?>
 <!DOCTYPE html>
 <html lang="en">
