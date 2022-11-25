@@ -1,4 +1,6 @@
-
+<?php require
+	"models/protype.php";
+$protype = new Protype; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,10 +84,10 @@
 					</div>
 					<!-- /LOGO -->
 
-						<!-- SEARCH BAR -->
-						<div class="col-md-6">
+					<!-- SEARCH BAR -->
+					<div class="col-md-6">
 						<div class="header-search">
-						<form method="get" action="result.php">
+							<form method="get" action="result.php">
 								<select class="input-select">
 									<option value="0">All Categories</option>
 									<option value="1">Category 01</option>
@@ -110,59 +112,80 @@
 								</a>
 							</div>
 							<!-- /Wishlist -->
-
-							<div class="dropdown">
-								<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-									<i class="fa fa-shopping-cart"></i>
-									<span>Your cart</span>
-									<?php
-									$temp = 0;
-									if (isset($_SESSION['cart'])) {
-										foreach ($_SESSION['cart'] as $value) {
-											$temp += 1;
-										}
-									}
-									?>
-									<div class="qty"><?php echo $temp; ?></div>
-								</a>
-								<div class="cart-dropdown">
-									<div class="cart-list"><?php $totalPrice = 0;
-															$totalProduct = 0; ?>
-										<?php if (isset($_SESSION['cart'])) :
-
-											foreach ($_SESSION['cart'] as $key => $qty) :
-												$getAllProducts =  $product->getAllProducts();
-												foreach ($getAllProducts as $value) :
-													if ($value['id'] == $key) : ?>
-														<?php $totalPrice += $value['price'] * $qty;
-														$totalProduct += 1;
-														?>
-														<div class="product-widget">
-															<div class="product-img">
-																<img src="./img/<?php echo $value['pro_image'] ?>" alt="">
-															</div>
-															<div class="product-body">
-																<h3 class="product-name"><a href="detail.php?id=<?php echo $value['id'] ?>&type_id=<?php echo $value['type_id'] ?>"><?php echo $value['name'] ?></a></h3>
-																<h4 class="product-price"><span class="qty"><?php echo $qty ?>x</span><?php echo number_format($value['price']) ?>VND</h4>
-															</div>
-															<a href="delcart1.php?id=<?php echo $value['id'] ?>"><button class="delete"><i class="fa fa-close"></i></button></a>
-														</div>
-													<?php endif ?>
-												<?php endforeach ?>
-											<?php endforeach ?>
-										<?php endif ?>
-									</div>
-									<div class="cart-summary">
-										<small><?php echo $totalProduct ?> Sản phẩm</small>
-										<h5>SUBTOTAL: <?php echo number_format($totalPrice) ?></h5>
-									</div>
-									<div class="cart-btns">
-										<a href="cart.php">View Cart</a>
-										<a href="orders.php">Checkout <i class="fa fa-arrow-circle-right"></i></a>
+							<?php if (isset($_SESSION['name'])) { ?>
+								<div class="dropdown">
+									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+										<i class="fa fa-shopping-cart"></i>
+										<span>Your cart</span>
+										<?php
+										$getIdUser = $protype->getIdUser($mail = $_SESSION['name']);
+										foreach ($getIdUser as $value) :
+											//gán id người dùng vào biến
+											$get = $value['id'];
+										endforeach;
+										$getCartByIds = $product->getCartById($id = $get);
+										//gán số lượng sản phẩm ban đầu
+										$totalProduct = 0;
+										//gán tong gia san pham ban dau
+										$totalPrice = 0;
+										?>
+										<div class="qty">
+											<!-- Đếm số sản phẩm có trong giỏ hàng -->
+											<?php foreach ($getCartByIds as $value) : $totalProduct += 1;
+											endforeach;
+											?>
+											<?php echo $totalProduct; ?>
+										</div>
+									</a>
+									<div class="cart-dropdown">
+										<div class="cart-list">
+											<?php foreach ($getCartByIds as $value) : $totalProduct += 1; ?>
+												<div class="product-widget">
+													<div class="product-img">
+														<img src="./img/<?php echo $value['image'] ?>" alt="">
+													</div>
+													<div class="product-body">
+														<?php $getIdAndType = $product->getIdAndType($value['name']) ?>
+														<?php foreach ($getIdAndType as $values) : ?>
+															<h3 class="product-name"><a href="detail.php"><?php echo $value['name'] ?></a></h3>
+														<?php endforeach; ?>
+														<h4 class="product-price"><?php echo number_format($value['price']);
+																					$totalPrice += $value['price'] ?>VND</h4>
+													</div>
+													<a href="delcart.php?id=<?php echo $value['id'] ?> ?>"><button class="delete"><i class="fa fa-close"></i></button></a>
+												</div>
+											<?php endforeach; ?>
+										</div>
+										<div class="cart-summary">
+											<small><?php echo $totalProduct ?> Sản phẩm</small>
+											<h5>SUBTOTAL: <?php echo number_format($totalPrice) ?></h5>
+										</div>
+										<div class="cart-btns">
+											<a href="cart.php">View Cart</a>
+											<a href="orders.php">Checkout <i class="fa fa-arrow-circle-right"></i></a>
+										</div>
 									</div>
 								</div>
-							</div>
+							<?php } else { ?>
+								<div class="dropdown">
+									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+										<i class="fa fa-shopping-cart"></i>
+										<span>Your Cart</span>
+									</a>
+									<div class="cart-dropdown">
+										<div class="cart-list">
 
+										</div>
+										<div class="cart-summary">
+											<h5>Vui lòng đăng nhập</h5>
+										</div>
+										<div class="cart-btns">
+											<a href="login.php">View Cart</a>
+											<a href="#">Checkout <i class="fa fa-arrow-circle-right"></i></a>
+										</div>
+									</div>
+								</div>
+							<?php } ?>
 							<!-- Menu Toogle -->
 							<div class="menu-toggle">
 								<a href="#">

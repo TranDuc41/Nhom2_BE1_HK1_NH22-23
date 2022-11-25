@@ -8,14 +8,14 @@ $product = new Product;
 if (isset($_GET['type_id'])) {
     $getCartByIds = $product->getCartById($id = $_GET['type_id']);
 } else {
-    require "models/protype.php";
-    $protype = new Protype;
-    $getIdUser = $protype->getIdUser($mail = $_SESSION['name']);
-    foreach ($getIdUser as $value) :
-        //gán id người dùng vào biến
-        $get = $value['id'];
-    endforeach;
-    $getCartByIds = $product->getCartById($id = $get);
+    // require "models/protype.php";
+    // $protype = new Protype;
+    // $getIdUser = $protype->getIdUser($mail = $_SESSION['name']);
+    // foreach ($getIdUser as $value) :
+    //     //gán id người dùng vào biến
+    //     $get = $value['id'];
+    // endforeach;
+    // $getCartByIds = $product->getCartById($id = $get);
 }
 ?>
 
