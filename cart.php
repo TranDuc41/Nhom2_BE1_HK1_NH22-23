@@ -2,6 +2,7 @@
 require "config.php";
 require "models/db.php";
 require "models/product.php";
+require"models/protype.php";
 $product = new Product;
 
 //Nếu có type_id 

@@ -3,6 +3,8 @@ session_start();
 require "config.php";
 require "models/db.php";
 require "models/product.php";
+require "models/protype.php";
+$protype = new Protype;
 $product = new Product;
 $products = $product->getAllProducts();
 $protypes = $product->getAllProtypes($_GET['type_id']);

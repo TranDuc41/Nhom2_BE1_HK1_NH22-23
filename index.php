@@ -1,7 +1,9 @@
 <?php session_start();
 require "config.php";
 require "models/db.php";
+require "models/protype.php";
 require "models/product.php";
+$protype = new Protype;
 $product = new Product;
 $getAllProducts = $product->getAllProducts();
 ?>

@@ -2,6 +2,8 @@
 require "config.php";
 require "models/db.php";
 require "models/product.php";
+require "models/protype.php";
+$protype = new Protype;
 $product = new Product;
 $getAllProducts = $product->getAllProducts();?>
 <?php include"./views/header.php"?>
@@ -41,4 +43,4 @@ if(isset($_GET['status'])){
 
 
    
-    <?php include"./views/footer.php"?>
+<?php include"./views/footer.php"?>

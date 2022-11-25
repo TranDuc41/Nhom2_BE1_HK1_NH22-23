@@ -1,6 +1,4 @@
-<?php require
-	"models/protype.php";
-$protype = new Protype; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,6 +12,7 @@ $protype = new Protype; ?>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
 	<!-- Bootstrap -->
 	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
@@ -112,7 +111,12 @@ $protype = new Protype; ?>
 								</a>
 							</div>
 							<!-- /Wishlist -->
-							<?php if (isset($_SESSION['name'])) { ?>
+
+							<!-- Cart -->
+							<?php if (isset($_SESSION['name'])) { 
+								// require"models/protype.php";
+								$protype = new Protype;
+								?>
 								<div class="dropdown">
 									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 										<i class="fa fa-shopping-cart"></i>
@@ -147,7 +151,7 @@ $protype = new Protype; ?>
 													<div class="product-body">
 														<?php $getIdAndType = $product->getIdAndType($value['name']) ?>
 														<?php foreach ($getIdAndType as $values) : ?>
-															<h3 class="product-name"><a href="detail.php"><?php echo $value['name'] ?></a></h3>
+															<h3 class="product-name"><a href="detail.php?id=<?php echo $values['id'] ?>&type_id=<?php echo $values['type_id'] ?>"><?php echo $value['name'] ?></a></h3>
 														<?php endforeach; ?>
 														<h4 class="product-price"><?php echo number_format($value['price']);
 																					$totalPrice += $value['price'] ?>VND</h4>

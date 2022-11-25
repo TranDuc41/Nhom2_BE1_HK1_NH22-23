@@ -6,8 +6,7 @@ require "models/protype.php";
 $product = new Product;
 $getAllProducts = $product->getAllProducts();
 $protype = new Protype;
-$protypes = $protype->getProtypes();
-?>
+$protypes = $protype->getProtypes(); ?>
 <?php include "./views/header.php" ?>
 
 <!-- SECTION -->
@@ -115,36 +114,17 @@ $protypes = $protype->getProtypes();
 				<div class="store-filter clearfix">
 					<div class="store-sort">
 						<label>
-							Sort By:
-							<select class="input-select">
-								<option value="0">Popular</option>
-								<option value="1">Position</option>
-							</select>
-						</label>
-
-						<label>
 							Show:
-							<select class="input-select">
+							<select class="input-select work-select">
 								<option value="0">3</option>
 								<option value="1">6</option>
 							</select>
 						</label>
-
 					</div>
-					<ul class="store-grid">
-						<li class="active"><i class="fa fa-th"></i></li>
-						<li><a href="#"><i class="fa fa-th-list"></i></a></li>
-					</ul>
 				</div>
 				<!-- /store top filter -->
-
-				<!-- store products -->
-				<div class="row">
-
-				</div>
 				<!-- product -->
 				<?php
-
 				//TÌM LIMIT VÀ CURRENT_PAGE
 				$current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 				$limit = 6;
