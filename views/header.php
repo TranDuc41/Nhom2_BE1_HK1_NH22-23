@@ -103,13 +103,30 @@
 					<div class="col-md-3 clearfix">
 						<div class="header-ctn">
 							<!-- Wishlist -->
+							<?php if (isset($_SESSION['name'])) { ?>
 							<div>
-								<a href="#">
+								<a href="wistlist.php">
 									<i class="fa fa-heart-o"></i>
 									<span>Your wistlist</span>
-									<div class="qty">0</div>
+									<?php 
+									$qty = 0;
+									foreach ($getWistlistByIds as $value) : 
+										$qty++;
+										endforeach;	
+									?>
+									<div class="qty"><?php echo $qty ?></div>
 								</a>
 							</div>
+							<?php }else{ ?>
+								<!-- Wishlist -->
+								<div>
+									<a href="#">
+										<i class="fa fa-heart-o"></i>
+										<span>Your Wishlist</span>
+									</a>
+								</div>
+								<!-- /Wishlist -->
+								<?php } ?>
 							<!-- /Wishlist -->
 
 							<!-- Cart -->
@@ -143,7 +160,7 @@
 									</a>
 									<div class="cart-dropdown">
 										<div class="cart-list">
-											<?php foreach ($getCartByIds as $value) : $totalProduct += 1; ?>
+											<?php foreach ($getCartByIds as $value) : ?>
 												<div class="product-widget">
 													<div class="product-img">
 														<img src="./img/<?php echo $value['image'] ?>" alt="">

@@ -6,7 +6,17 @@ require "models/protype.php";
 $product = new Product;
 $getAllProducts = $product->getAllProducts();
 $protype = new Protype;
-$protypes = $protype->getProtypes(); ?>
+$protypes = $protype->getProtypes();
+
+if(isset($_SESSION['name'])){
+$getIdUser = $protype->getIdUser($mail = $_SESSION['name']);
+foreach ($getIdUser as $value) :
+	//gán id người dùng vào biến
+	$get = $value['id'];
+endforeach;
+$getWistlistByIds = $product->getWistlistById($id = $get);
+}
+?>
 <?php include "./views/header.php" ?>
 
 <!-- SECTION -->
@@ -169,7 +179,7 @@ $protypes = $protype->getProtypes(); ?>
 										<i class="fa fa-star"></i>
 									</div>
 									<div class="product-btns">
-										<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+										<button class="quick-view"><a href="addwistlist.php?id=<?php echo $value['id'] ?>&type_id=<?php echo $value['type_id'] ?>"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></a></button>
 										<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
 										<button class="quick-view"><a href="detail.php?id=<?php echo $value['id'] ?>&type_id=<?php echo $value['type_id'] ?>"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></a></button>
 									</div>

@@ -7,16 +7,16 @@ $product = new Product;
 
 //Nếu có type_id 
 if (isset($_GET['type_id'])) {
-    $getCartByIds = $product->getCartById($id = $_GET['type_id']);
+    $getWistlistByIds = $product->getWistlistById($id = $_GET['type_id']);
 } else {
-    // $protype = new Protype;
-    // $getIdUser = $protype->getIdUser($mail = $_SESSION['name']);
-    // foreach ($getIdUser as $value) :
-    //     //gán id người dùng vào biến
-    //     $get = $value['id'];
-    // endforeach;
-    // $getCartByIds = $product->getCartById($id = $get);
-}
+    $protype = new Protype;
+    $getIdUser = $protype->getIdUser($mail = $_SESSION['name']);
+    foreach ($getIdUser as $value) :
+        //gán id người dùng vào biến
+        $get = $value['id'];
+    endforeach;
+    $getWistlistByIds = $product->getWistlistById($id = $get);
+    }
 ?>
 
 <!-- Google Fonts -->
@@ -44,14 +44,6 @@ if (isset($_GET['type_id'])) {
 </head>
 
 <body>
-    <?php $protype = new Protype;
-    $getIdUser = $protype->getIdUser($mail = $_SESSION['name']);
-    foreach ($getIdUser as $value) :
-        //gán id người dùng vào biến
-        $get = $value['id'];
-    endforeach;
-    $getWistlistByIds = $product->getWistlistById($id = $get);
-    ?>
     <?php include "./views/header.php" ?>
 
     <div class="single-product-area">
@@ -63,26 +55,24 @@ if (isset($_GET['type_id'])) {
                         <div class="woocommerce">
                             <form method="post" action="#">
                                 <table cellspacing="0" class="shop_table cart">
-                                    <h3>GIỎ HÀNG</h3>
+                                    <h3>SẢN PHẨM YÊU THÍCH</h3>
                                     <thead>
                                         <tr>
                                             <th class="product-remove">&nbsp;</th>
                                             <th class="product-thumbnail">&nbsp;</th>
                                             <th class="product-name">sản phẩm</th>
                                             <th class="product-price">giá</th>
-                                            <th class="product-quantity">số lượng</th>
-                                            <th class="product-subtotal">tổng giá</th>
                                             <th class="product-action">&nbsp;</th>
                                         </tr>
                                     </thead>
                                     <?php $total = 0;
                                     ?>
-                                    <?php foreach ($getCartByIds as $value) : ?>
+                                    <?php foreach ($getWistlistByIds as $value) : ?>
                                         <tbody>
 
                                             <tr class="cart_item">
                                                 <td class="product-remove">
-                                                    <a title="Remove this item" class="remove" href="delcart.php?id=<?php echo $value['id'] ?>">×</a>
+                                                    <a title="Remove this item" class="remove" href="delwistlist.php?id=<?php echo $value['id'] ?>">×</a>
                                                 </td>
 
                                                 <td class="product-thumbnail">
@@ -101,24 +91,10 @@ if (isset($_GET['type_id'])) {
                                                 <td class="product-price">
                                                     <span class="amount"><?php echo number_format($value['price']) ?>VND</span>
                                                 </td>
-
-                                                <td class="product-quantity">
-                                                    <div class="quantity buttons_added">
-                                                        <!--     <input type="button" class="minus" value="-"> -->
-                                                        <a href="subtractqty.php?id=<?php echo $value['id'] ?>&sl=<?php echo ($value['soLuong'] - 1) ?>"><input type="button" class="minus" value="-"></a>
-                                                        <input type="text" size="1" class="input-text qty text" title="Qty" value="<?php echo $value['soLuong'] ?>">
-                                                        <a href="addqty.php?id=<?php echo $value['id'] ?>&sl=<?php echo ($value['soLuong'] + 1) ?>"><input type="button" class="plus" value="+"></a>
-                                                        <!--    <input type="button" class="plus" value="+"> -->
-                                                    </div>
-                                                </td>
-                                                <td class="product-subtotal">
-                                                    <span class="amount"><?php echo number_format($value['price'] * $value['soLuong']);
-                                                                            $total += $value['price'] * $value['soLuong']; ?>VND</span>
-                                                </td>
                                                 <td class="actions" colspan="6">
 
                                                     <div class="add-to-cart">
-                                                        <button class="add-to-cart-btn"><a style="text-decoration: none;" href="orders.php?id=<?php echo $value['id'] ?>"><i class="fa fa-credit-card"></i> Thanh toán</a></button>
+                                                        <button class="add-to-cart-btn"><a style="text-decoration: none;" href="detail.php?id=<?php echo $values['id'] ?>&type_id=<?php echo $values['type_id'] ?>"> Xem chi tiết</a></button>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -127,28 +103,6 @@ if (isset($_GET['type_id'])) {
 
                                 </table>
                             </form>
-                            <div class="cart-collaterals">
-                                <div class="cart_totals col-lg-offset-4">
-                                    <h2>Tổng Đơn hàng</h2>
-
-                                    <table cellspacing="0">
-                                        <tbody>
-
-                                            <tr class="shipping">
-                                                <th>Vận chuyển và xử lý</th>
-                                                <td>Miễn phí</td>
-                                            </tr>
-
-                                            <tr class="order-total">
-                                                <th>Tổng</th>
-                                                <td><strong><span class="amount"><?php echo number_format($total) ?>VND</span></strong> </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-
-                                </div>
-
-                            </div>
                             <hr size="5px" align="center" color=#e6e9ee />
                         </div>
                     </div>
