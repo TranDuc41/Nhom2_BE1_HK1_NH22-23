@@ -56,10 +56,10 @@ $getWistlistByIds = $product->getWistlistById($id = $get);
 			<div class="col-md-4 col-xs-6">
 				<div class="shop">
 					<div class="shop-img">
-						<img src="./img/shop02.png" alt="">
+						<img src="./img/shop02.jpg" alt="">
 					</div>
 					<div class="shop-body">
-						<h3>Cameras<br>Collection</h3>
+						<h3>Phones<br>Collection</h3>
 						<a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
 					</div>
 				</div>
@@ -119,7 +119,6 @@ $getWistlistByIds = $product->getWistlistById($id = $get);
 											</div>
 											<div class="product-btns">
 												<button class="quick-view"><a href="addwistlist.php?id=<?php echo $value['id'] ?>&type_id=<?php echo $value['type_id'] ?>"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></a></button>
-												<button class="add-to-compare"><a href="detail.php?id=<?php echo $value['id'] ?>&type_id=<?php echo $value['type_id'] ?>"></a><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
 												<button class="quick-view"><a href="detail.php?id=<?php echo $value['id'] ?>&type_id=<?php echo $value['type_id'] ?>"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></a></button>
 											</div>
 										</div>
@@ -239,7 +238,6 @@ $getWistlistByIds = $product->getWistlistById($id = $get);
 											</div>
 											<div class="product-btns">
 												<button class="quick-view"><a href="addwistlist.php?id=<?php echo $value['id'] ?>&type_id=<?php echo $value['type_id'] ?>"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></a></button>
-												<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
 												<button class="quick-view"><a href="detail.php?id=<?php echo $value['id'] ?>&type_id=<?php echo $value['type_id'] ?>"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></a></button>
 											</div>
 										</div>
