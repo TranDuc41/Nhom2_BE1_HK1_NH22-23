@@ -3,7 +3,12 @@ require "../config.php";
 require "../models/db.php";
 require "../models/user.php";
 $user = new User;
-$getUser = $user->getUser($name = $_SESSION['name']);
+if (isset($_SESSION['name'])) {
+
+  $getUser = $user->getUser($name = $_SESSION['name']);
+} else {
+  header("Location:../login.php");
+}
 $section =  "table-data-product.php"
 ?>
 <!DOCTYPE html>
@@ -30,6 +35,9 @@ $section =  "table-data-product.php"
       </head>
 
 <body onload="time()" class="app sidebar-mini rtl">
+<?php foreach ($getUser as $value) :
+        //Kiểm tra người dùng đã đăng nhập hay chưa và có role là admin hay không
+        if (isset($_SESSION['name']) && $value['role'] == "admin") { ?>
    <!-- Navbar-->
    <header class="app-header">
     <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar"
@@ -516,6 +524,12 @@ MODAL
             e.stopImmediatePropagation();
         });
     </script>
+    <?php } else {
+            //Nếu chưa đăng nhập sẽ được chuyển hướng về trang đăng nhập
+            header("Location:../login.php");
+        }
+    endforeach;
+    ?>
 </body>
 
 </html>

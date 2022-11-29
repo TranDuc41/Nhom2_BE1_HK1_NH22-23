@@ -3,7 +3,12 @@ require "../config.php";
 require "../models/db.php";
 require "../models/user.php";
 $user = new User;
-$getUser = $user->getUser($name = $_SESSION['name']);
+if (isset($_SESSION['name'])) {
+
+  $getUser = $user->getUser($name = $_SESSION['name']);
+} else {
+  header("Location:../login.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,6 +71,9 @@ $getUser = $user->getUser($name = $_SESSION['name']);
 </head>
 
 <body class="app sidebar-mini rtl">
+<?php foreach ($getUser as $value) :
+        //Kiểm tra người dùng đã đăng nhập hay chưa và có role là admin hay không
+        if (isset($_SESSION['name']) && $value['role'] == "admin") { ?>
   <style>
     .Choicefile {
       display: block;
@@ -408,6 +416,12 @@ MODAL
       }
     });
   </script>
+  <?php } else {
+            //Nếu chưa đăng nhập sẽ được chuyển hướng về trang đăng nhập
+            header("Location:../login.php");
+        }
+    endforeach;
+    ?>
 </body>
 
 </html>

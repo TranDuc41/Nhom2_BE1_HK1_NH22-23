@@ -5,7 +5,12 @@ require "../models/user.php";
 require "../models/product.php";
 $user = new User;
 $product = new Product;
-$getUser = $user->getUser($name = $_SESSION['name']);
+if(isset($_SESSION['name'])){
+
+  $getUser = $user->getUser($name = $_SESSION['name']);
+}else{
+  header("Location:../login.php");
+}
 $getAllProduct = $product->getAllProducts();
 $getAllUser = $user->getAllUser($role = "user");
 $get6UserNew = $user->get6UserNew($role = "user");
@@ -65,7 +70,7 @@ $section =  "index.php"
         </div>
         <div class="row">
           <!--Left-->
-          <div class="col-md-12 col-lg-6">
+          <div class="col-md-12 col-lg-12">
             <div class="row">
               <!-- col-6 -->
               <div class="col-md-6">
@@ -219,29 +224,6 @@ $section =  "index.php"
             </div>
           </div>
           <!--END left-->
-          <!--Right-->
-          <div class="col-md-12 col-lg-6">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="tile">
-                  <h3 class="tile-title">Dữ liệu 6 tháng đầu vào</h3>
-                  <div class="embed-responsive embed-responsive-16by9">
-                    <canvas class="embed-responsive-item" id="lineChartDemo"></canvas>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="tile">
-                  <h3 class="tile-title">Thống kê 6 tháng doanh thu</h3>
-                  <div class="embed-responsive embed-responsive-16by9">
-                    <canvas class="embed-responsive-item" id="barChartDemo"></canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <!--END right-->
         </div>
 
 
