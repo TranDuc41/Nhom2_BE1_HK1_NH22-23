@@ -4,6 +4,8 @@ require "models/db.php";
 require "models/product.php";
 require"models/protype.php";
 $product = new Product;
+$protype = new Protype;
+$protypes = $protype->getProtypes();
 
 //Nếu có type_id 
 if (isset($_GET['type_id'])) {

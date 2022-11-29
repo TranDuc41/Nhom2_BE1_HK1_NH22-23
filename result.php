@@ -8,6 +8,17 @@ $getAllProducts = $product->getAllProducts();
 $protype = new Protype;
 $protypes = $protype->getProtypes();
 
+if(isset( $_SESSION['name'])){
+
+    $getIdUser = $protype->getIdUser($mail = $_SESSION['name']);
+}else{
+    header("Location: /Nhom2_BE1_HK1_NH22-23/login.php");
+}
+    foreach ($getIdUser as $value) :
+        //gán id người dùng vào biến
+        $get = $value['id'];
+    endforeach;
+    $getWistlistByIds = $product->getWistlistById($id = $get);
 ?>
 <?php include "./views/header.php" ?>
 
