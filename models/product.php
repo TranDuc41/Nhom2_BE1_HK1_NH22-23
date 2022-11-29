@@ -254,4 +254,26 @@ class Product extends Db
         }
         return $link;
     }
+
+    //Lấy ra tất cả sản phẩm theo type_id
+    public function getProductsToTypeId($type_id)
+    {
+        $sql = self::$connection->prepare("SELECT * FROM products WHERE type_id = ? order by id desc");
+        $sql->bind_param("i", $type_id);
+        $sql->execute(); //return object
+        $item = array();
+        $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $item;
+    }
+
+     //Lấy danh sách san phẩm
+     public function getProductsTypeId($type_id, $start, $limit)
+     {
+         $sql = self::$connection->prepare("SELECT * FROM products where type_id = ? order by id desc LIMIT $start, $limit");
+         $sql->bind_param("i", $type_id);
+         $sql->execute(); //return an object
+         $items = array();
+         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+         return $items; //return an array
+     }
 }

@@ -7,7 +7,8 @@ require "models/protype.php";
 $protype = new Protype;
 $product = new Product;
 $products = $product->getAllProducts();
-$protypes = $product->getAllProtypes($_GET['type_id']);
+$protypes1 = $product->getAllProtypes($_GET['type_id']);
+$protypes = $protype->getProtypes();
 
 if(isset($_SESSION['name'])){
 $getIdUser = $protype->getIdUser($mail = $_SESSION['name']);
@@ -170,7 +171,7 @@ $getWistlistByIds = $product->getWistlistById($id = $get);
 								<?php
 								if (isset($_GET['type_id'])) :
 									$type_id = $_GET['type_id'];
-									foreach ($protypes as $value) :
+									foreach ($protypes1 as $value) :
 										if ($type_id == $value['type_id']) :
 								?>
 											<div class="product">

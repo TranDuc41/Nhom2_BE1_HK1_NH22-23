@@ -6,6 +6,7 @@ require "models/product.php";
 $protype = new Protype;
 $product = new Product;
 $getAllProducts = $product->getAllProducts();
+$protypes = $protype->getProtypes();
 
 if(isset($_SESSION['name'])){
 $getIdUser = $protype->getIdUser($mail = $_SESSION['name']);
@@ -32,7 +33,7 @@ $getWistlistByIds = $product->getWistlistById($id = $get);
 					</div>
 					<div class="shop-body">
 						<h3>Laptop<br>Collection</h3>
-						<a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+						<a href="protype_product.php?type_id=2" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
 					</div>
 				</div>
 			</div>
@@ -46,7 +47,7 @@ $getWistlistByIds = $product->getWistlistById($id = $get);
 					</div>
 					<div class="shop-body">
 						<h3>Accessories<br>Collection</h3>
-						<a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+						<a href="protype_product.php?type_id=5" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
 					</div>
 				</div>
 			</div>
@@ -60,7 +61,7 @@ $getWistlistByIds = $product->getWistlistById($id = $get);
 					</div>
 					<div class="shop-body">
 						<h3>Phones<br>Collection</h3>
-						<a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+						<a href="protype_product.php?type_id=1" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
 					</div>
 				</div>
 			</div>
