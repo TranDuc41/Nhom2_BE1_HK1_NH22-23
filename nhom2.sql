@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2022 at 01:42 AM
+-- Generation Time: Nov 29, 2022 at 03:03 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -49,7 +49,8 @@ INSERT INTO `cart` (`id`, `user_id`, `product_id`, `image`, `price`, `name`, `so
 (62, '2', 7, 'MacBookAirM1_2020.jpg', 23490000, 'Apple MacBook Air M1', 1),
 (63, '13', 7, 'MacBookAirM1_2020.jpg', 23490000, 'Apple MacBook Air M1', 1),
 (66, '2', 23, 'SonyWH-1000XM4.jpg', 8490000, 'Sony WH-1000XM4', 1),
-(67, '2', 1, 'Iphone13promax.jpg', 28690000, 'Iphone 13 pro max', 1);
+(67, '2', 1, 'Iphone13promax.jpg', 28690000, 'Iphone 13 pro max', 1),
+(83, '2', 9, 'MacBookProM2.jpg', 32990000, 'MacBook Pro M2', 1);
 
 -- --------------------------------------------------------
 
@@ -126,19 +127,6 @@ INSERT INTO `products` (`id`, `name`, `manu_id`, `type_id`, `price`, `pro_image`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product_wishlist`
---
-
-CREATE TABLE `product_wishlist` (
-  `id` int(12) NOT NULL,
-  `user_id` int(12) NOT NULL,
-  `product_id` int(12) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `protypes`
 --
 
@@ -185,6 +173,31 @@ INSERT INTO `users` (`id`, `mail`, `user_name`, `password`, `gioi_tinh`, `sdt`, 
 (13, 'An@gmail.com', 'An', 'qwe', 'Nam', 0, 'user', 0, '2022-11-18 10:13:29'),
 (14, '123@mail.com', 'Trần Đức', '123', '', 0, 'admin', 0, '2022-11-16 13:32:18');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wistlist`
+--
+
+CREATE TABLE `wistlist` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `image` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price` int(11) NOT NULL,
+  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `wistlist`
+--
+
+INSERT INTO `wistlist` (`id`, `user_id`, `product_id`, `image`, `price`, `name`) VALUES
+(7, 2, 16, 'AppleWatchSeries7.jpg', 12900000, 'Apple Watch Series 7'),
+(8, 2, 24, 'TrueWirelessSamsungGalaxyBuds2.jpg', 2990000, 'Samsung Galaxy Buds 2'),
+(9, 2, 7, 'MacBookAirM1_2020.jpg', 23490000, 'Apple MacBook Air M1'),
+(13, 13, 5, 'SamsungGlxZFlip4.jpg', 20690000, 'Samsung Galaxy Z Flip4');
+
 --
 -- Indexes for dumped tables
 --
@@ -208,12 +221,6 @@ ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `product_wishlist`
---
-ALTER TABLE `product_wishlist`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `protypes`
 --
 ALTER TABLE `protypes`
@@ -226,6 +233,12 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `wistlist`
+--
+ALTER TABLE `wistlist`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -233,7 +246,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT for table `manufactures`
@@ -248,12 +261,6 @@ ALTER TABLE `products`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT for table `product_wishlist`
---
-ALTER TABLE `product_wishlist`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `protypes`
 --
 ALTER TABLE `protypes`
@@ -264,6 +271,12 @@ ALTER TABLE `protypes`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `wistlist`
+--
+ALTER TABLE `wistlist`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

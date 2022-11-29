@@ -47,7 +47,7 @@ $section =  "table-data-table.php"
 
 
       <!-- User Menu-->
-      <li><a class="app-nav__item" href="/index.php"><i class='bx bx-log-out bx-rotate-180'></i> </a>
+      <li><a class="app-nav__item" href="../logout.php"><i class='bx bx-log-out bx-rotate-180'></i> </a>
 
       </li>
     </ul>
