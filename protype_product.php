@@ -138,7 +138,7 @@ $getWistlistByIds = $product->getWistlistById($id = $get);
 				<?php
 				//TÌM LIMIT VÀ CURRENT_PAGE
 				$current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-				$limit = 3;
+				$limit = 6;
 				$getAllProducts = $product->getProductsToTypeId($type_id);
 				// tổng số trang
 				$total_page = ceil(count($getAllProducts) / $limit);

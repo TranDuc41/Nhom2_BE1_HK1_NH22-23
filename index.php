@@ -46,7 +46,7 @@ $getWistlistByIds = $product->getWistlistById($id = $get);
 						<img src="./img/shop03.png" alt="">
 					</div>
 					<div class="shop-body">
-						<h3>Accessories<br>Collection</h3>
+						<h3>Headphone<br>Collection</h3>
 						<a href="protype_product.php?type_id=5" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
 					</div>
 				</div>
@@ -203,7 +203,7 @@ $getWistlistByIds = $product->getWistlistById($id = $get);
 			<!-- section title -->
 			<div class="col-md-12">
 				<div class="section-title">
-					<h3 class="title">Top selling</h3>
+					<h3 class="title">feature products</h3>
 				</div>
 			</div>
 			<!-- /section title -->

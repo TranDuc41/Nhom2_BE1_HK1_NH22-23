@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,6 +52,7 @@
 				<ul class="header-links pull-right">
 					<!-- <li><a href="#"><i class="fa fa-dollar"></i> VND</a></li> -->
 					<?php
+					$activePage = basename($_SERVER['PHP_SELF'], ".php");
 					// Hiển thị thông tin lưu trong Session
 					// phải kiểm tra có tồn tại không trước khi hiển thị nó ra
 					if (isset($_SESSION['name'])) {
@@ -99,20 +99,20 @@
 						<div class="header-ctn">
 							<!-- Wishlist -->
 							<?php if (isset($_SESSION['name'])) { ?>
-							<div>
-								<a href="wistlist.php">
-									<i class="fa fa-heart-o"></i>
-									<span>Your wistlist</span>
-									<?php 
-									$qty = 0;
-									foreach ($getWistlistByIds as $value) : 
-										$qty++;
-										endforeach;	
-									?>
-									<div class="qty"><?php echo $qty ?></div>
-								</a>
-							</div>
-							<?php }else{ ?>
+								<div>
+									<a href="wistlist.php">
+										<i class="fa fa-heart-o"></i>
+										<span>Your wistlist</span>
+										<?php
+										$qty = 0;
+										foreach ($getWistlistByIds as $value) :
+											$qty++;
+										endforeach;
+										?>
+										<div class="qty"><?php echo $qty ?></div>
+									</a>
+								</div>
+							<?php } else { ?>
 								<!-- Wishlist -->
 								<div>
 									<a href="#">
@@ -121,14 +121,14 @@
 									</a>
 								</div>
 								<!-- /Wishlist -->
-								<?php } ?>
+							<?php } ?>
 							<!-- /Wishlist -->
 
 							<!-- Cart -->
-							<?php if (isset($_SESSION['name'])) { 
+							<?php if (isset($_SESSION['name'])) {
 								// require"models/protype.php";
 								$protype = new Protype;
-								?>
+							?>
 								<div class="dropdown">
 									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 										<i class="fa fa-shopping-cart"></i>
@@ -230,14 +230,21 @@
 			<div id="responsive-nav">
 				<!-- NAV -->
 				<ul class="main-nav nav navbar-nav">
-					<li class="active"><a href="./index.php">Home</a></li>
-					<li><a href="./store.php">All Producs</a></li>
+					<li class="<?= ($activePage == 'index') ? 'active' : ''; ?>"><a href="./index.php">Home</a></li>
+					<li class="<?= ($activePage == 'store') ? 'active' : ''; ?>"><a href="./store.php">All Producs</a></li>
 					<?php
 
-						foreach ($protypes as $value) :
-						?>
-					<li><a href="protype_product.php?type_id=<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a></li>
-					<?php endforeach; ?>
+					foreach ($protypes as $value) :
+						//Nếu "$_GET['type_id']" true
+						if (isset($_GET['type_id'])) {
+					?>
+							<!-- Kiểm tra nếu "$value['type_id'] == $_GET['type_id']" thêm class active -->
+							<li class="<?= ($value['type_id'] == $_GET['type_id']) ? 'active' : ''; ?>"><a href="protype_product.php?type_id=<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a></li>
+						<?php } else { ?>
+							<!-- Nếu "$_GET['type_id']" false chỉ hiển thị danh sách loại sản phẩm-->
+							<li><a href="protype_product.php?type_id=<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a></li>
+					<?php }
+					endforeach; ?>
 				</ul>
 				<!-- /NAV -->
 			</div>
