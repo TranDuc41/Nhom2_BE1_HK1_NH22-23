@@ -7,7 +7,6 @@ $product = new Product;
 $getAllProducts = $product->getAllProducts();
 $protype = new Protype;
 $protypes = $protype->getProtypes();
-
 if(isset($_SESSION['name'])){
     $getIdUser = $protype->getIdUser($mail = $_SESSION['name']);
     foreach ($getIdUser as $value) :
@@ -16,6 +15,7 @@ if(isset($_SESSION['name'])){
     endforeach;
     $getWistlistByIds = $product->getWistlistById($id = $get);
     }
+
 ?>
 <?php include "./views/header.php" ?>
 
@@ -148,20 +148,46 @@ if(isset($_SESSION['name'])){
                 <!-- /store top filter -->
                 <!-- store products -->
                 <div class="row">
+                   
                     <!-- product -->
                     <?php if (isset($_GET['keyword'])) :
                         $keyword = $_GET['keyword'];
                         $search = $product->search($keyword);
-                        $perPage = 3;
-                        $page = isset($_GET['page']) ? $_GET['page'] : 1;
-                        $total = count($search);
+                        // $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                        // $total = count($search);
+                        
                         $url = $_SERVER['PHP_SELF'] . "?keyword=" . $keyword;
-                        $search = $product->search3($keyword, $page, $perPage);
+                        // $search = $product->search3($keyword);
                         if (count($search) == 0) {
                             echo "	<h2>Không tìm thấy sản phẩm</h2>";
                         } else
-                            foreach ($search as $value) :
                     ?>
+                    <?php
+
+//TÌM LIMIT VÀ CURRENT_PAGE
+$current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+$limit = 3;
+// $getAllProducts = $product->getAllProducts();
+// tổng số trang
+$total_page = ceil(count($search) / $limit);
+
+// Giới hạn current_page trong khoảng 1 đến total_page
+if ($current_page > $total_page) {
+    $current_page = $total_page;
+} else if ($current_page < 1) {
+    $current_page = 1;
+}
+
+// Tìm Start
+$start = ($current_page - 1) * $limit; 
+$search1 = $product->search3($keyword, $start, $limit);
+$url = $_SERVER['PHP_SELF'] . "?keyword=" . $keyword;
+                        // $search = $product->search3($keyword);
+                        if (count($search) == 0) {
+                            echo "	<h2>Không tìm thấy sản phẩm</h2>";
+                        } else
+                            foreach ($search1 as $value) :
+?>
                             <!-- product -->
                             <div class="col-md-4 col-xs-6">
                                 <div class="product">
@@ -192,8 +218,7 @@ if(isset($_SESSION['name'])){
                                     </a>
                                 </div>
                             </div>
-
-                        <?php endforeach;
+                            <?php endforeach;
                         ?>
                         <!-- /product -->
                 </div>
@@ -203,11 +228,23 @@ if(isset($_SESSION['name'])){
                 <div class="store-filter clearfix">
                     <span class="store-qty">Showing 20-100 products</span>
                     <ul class="store-pagination">
-                        <?php echo $product->paginate($url, $total, $perPage); ?>
-
-                    </ul>
+					<?php
+					require_once 'Pagination_Search.php';
+					//Khởi tạo class
+					$config = [
+                        'key' => $keyword,
+						'total' => count($search),
+						'limit' => $limit,
+						'full' => false, //bỏ qua nếu không muốn hiển thị full page
+						'querystring' => 'page' //bỏ qua nếu GET của bạn là page
+					];
+					$page = new Pagination($config);
+					//hiển thị code
+					echo $page->getPagination();
+					?>
+				</ul>
                 </div>
-            <?php endif ?>
+                <?php endif; ?>
             <!-- /store bottom filter -->
             </div>
             <!-- /STORE -->

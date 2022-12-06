@@ -221,7 +221,7 @@ class Product extends Db
     //Tìm Kiếm sản phẩm 
     public function search($keyword)
     {
-        $sql = self::$connection->prepare("SELECT * FROM products WHERE `description` LIKE ?");
+        $sql = self::$connection->prepare("SELECT * FROM products WHERE `name` LIKE ?");
         $keyword = "%$keyword%";
         $sql->bind_param("s", $keyword);
         $sql->execute(); //return an object
@@ -229,17 +229,17 @@ class Product extends Db
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $items; //return an array
     }
-    public function search3($keyword, $page, $perPage)
+    public function search3($keyword, $start, $limit)
     {
-        $firstLink = ($page - 1) * $perPage;
-        $sql = self::$connection->prepare("SELECT * FROM `products` WHERE `name` Like ? LIMIT ?,?");
+        $sql = self::$connection->prepare("SELECT * FROM products WHERE `name` LIKE ? LIMIT ?,?");
         $keyword = "%$keyword%";
-        $sql->bind_param('sss', $keyword, $firstLink, $perPage);
+        $sql->bind_param("sii", $keyword, $start, $limit);
         $sql->execute(); //return an object
         $items = array();
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $items; //return an array
     }
+    
     //Phân Trang
     function paginate($url, $total, $perPage)
     {
