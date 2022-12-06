@@ -1,6 +1,7 @@
 <?php
 class Product extends Db
 {
+    //Lấy ra tất cả sản phẩm
     public function getAllProducts()
     {
         $sql = self::$connection->prepare("SELECT * FROM products");
