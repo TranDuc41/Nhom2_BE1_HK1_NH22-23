@@ -47,9 +47,9 @@
 							<h3 class="footer-title">About Us</h3>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
 							<ul class="footer-links">
-								<li><a href="#"><i class="fa fa-map-marker"></i>Cao Đẳng Công Nghệ Thủ Đức</a></li>
-								<li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
-								<li><a href="#"><i class="fa fa-envelope-o"></i>Demo@email.com</a></li>
+								<li><i class="fa fa-map-marker"></i>Cao Đẳng Công Nghệ Thủ Đức</li>
+								<li><i class="fa fa-phone"></i>+021-95-51-84</li>
+								<li><i class="fa fa-envelope-o"></i>Demo@email.com</li>
 							</ul>
 						</div>
 					</div>
@@ -58,11 +58,11 @@
 						<div class="footer">
 							<h3 class="footer-title">Categories</h3>
 							<ul class="footer-links">
-								<li><a href="#">Hot deals</a></li>
-								<li><a href="#">Laptops</a></li>
-								<li><a href="#">Smartphones</a></li>
-								<li><a href="#">Cameras</a></li>
-								<li><a href="#">Accessories</a></li>
+								<li><a href="protype_product.php?type_id=1">Điện thoại</a></li>
+								<li><a href="protype_product.php?type_id=2">Laptops</a></li>
+								<li><a href="protype_product.php?type_id=3">Loa</a></li>
+								<li><a href="protype_product.php?type_id=4">Đông hồ</a></li>
+								<li><a href="protype_product.php?type_id=5">Tai nghe</a></li>
 							</ul>
 						</div>
 					</div>
@@ -73,11 +73,11 @@
 						<div class="footer">
 							<h3 class="footer-title">Information</h3>
 							<ul class="footer-links">
-								<li><a href="#">About Us</a></li>
-								<li><a href="#">Contact Us</a></li>
-								<li><a href="#">Privacy Policy</a></li>
-								<li><a href="#">Orders and Returns</a></li>
-								<li><a href="#">Terms & Conditions</a></li>
+								<li>About Us</li>
+								<li>Contact Us</li>
+								<li>Privacy Policy</li>
+								<li>Orders and Returns</li>
+								<li>Terms & Conditions</li>
 							</ul>
 						</div>
 					</div>
@@ -86,11 +86,11 @@
 						<div class="footer">
 							<h3 class="footer-title">Service</h3>
 							<ul class="footer-links">
-								<li><a href="#">My Account</a></li>
-								<li><a href="#">View Cart</a></li>
-								<li><a href="#">Wishlist</a></li>
-								<li><a href="#">Track My Order</a></li>
-								<li><a href="#">Help</a></li>
+								<li>My Account</li>
+								<li>View Cart</li>
+								<li>Wishlist</li>
+								<li>Track My Order</li>
+								<li>Help</li>
 							</ul>
 						</div>
 					</div>
