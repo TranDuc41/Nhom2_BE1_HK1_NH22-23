@@ -29,18 +29,20 @@ $getWistlistByIds = $product->getWistlistById($id = $get);
 			<div id="aside" class="col-md-3">
 				<!-- aside Widget -->
 				<div class="aside">
-					<h3 class="aside-title">Categories</h3>
+					<h3 class="aside-title">Brand</h3>
 					<div class="checkbox-filter">
 						<?php
+						$product = new Product;
+						$manufactures = $product->getAllManufactures();
 
-						foreach ($protypes as $value) :
+						foreach ($manufactures as $value) :
 						?>
 							<div class="input-checkbox">
-								<input type="checkbox" id="category-<?php echo $value['type_id'] ?>">
-								<label for="category-<?php echo $value['type_id'] ?>">
+								<input type="checkbox" id="brand-<?php echo $value['manu_id'] ?>">
+								<label for="brand-<?php echo $value['manu_id'] ?>">
 									<span></span>
-									<?php echo $value['type_name'] ?>
-									<!-- <small>(120)</small> -->
+									<?php echo $value['manu_name'] ?>
+									<!-- <small>(578)</small> -->
 								</label>
 							</div>
 						<?php endforeach; ?>
@@ -64,29 +66,6 @@ $getWistlistByIds = $product->getWistlistById($id = $get);
 							<span class="qty-up">+</span>
 							<span class="qty-down">-</span>
 						</div>
-					</div>
-				</div>
-				<!-- /aside Widget -->
-
-				<!-- aside Widget -->
-				<div class="aside">
-					<h3 class="aside-title">Brand</h3>
-					<div class="checkbox-filter">
-						<?php
-						$product = new Product;
-						$manufactures = $product->getAllManufactures();
-
-						foreach ($manufactures as $value) :
-						?>
-							<div class="input-checkbox">
-								<input type="checkbox" id="brand-<?php echo $value['manu_id'] ?>">
-								<label for="brand-<?php echo $value['manu_id'] ?>">
-									<span></span>
-									<?php echo $value['manu_name'] ?>
-									<!-- <small>(578)</small> -->
-								</label>
-							</div>
-						<?php endforeach; ?>
 					</div>
 				</div>
 				<!-- /aside Widget -->
@@ -120,19 +99,6 @@ $getWistlistByIds = $product->getWistlistById($id = $get);
 
 			<!-- STORE -->
 			<div id="store" class="col-md-9">
-				<!-- store top filter -->
-				<div class="store-filter clearfix">
-					<div class="store-sort">
-						<label>
-							Show:
-							<select class="input-select work-select">
-								<option value="0">3</option>
-								<option value="1">6</option>
-							</select>
-						</label>
-					</div>
-				</div>
-				<!-- /store top filter -->
 				<!-- product -->
 				<?php
 				//TÌM LIMIT VÀ CURRENT_PAGE

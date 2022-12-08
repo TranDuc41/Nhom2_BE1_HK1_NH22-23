@@ -28,49 +28,9 @@ $getWistlistByIds = $product->getWistlistById($id = $get);
 		<div class="row">
 			<!-- ASIDE -->
 			<div id="aside" class="col-md-3">
-				<!-- aside Widget -->
-				<div class="aside">
-					<h3 class="aside-title">Categories</h3>
-					<div class="checkbox-filter">
-						<?php
 
-						foreach ($protypes as $value) :
-						?>
-							<div class="input-checkbox">
-								<input type="checkbox" id="category-<?php echo $value['type_id'] ?>">
-								<label for="category-<?php echo $value['type_id'] ?>">
-									<span></span>
-									<?php echo $value['type_name'] ?>
-									<!-- <small>(120)</small> -->
-								</label>
-							</div>
-						<?php endforeach; ?>
-					</div>
-				</div>
-				<!-- /aside Widget -->
-
-				<!-- aside Widget -->
-				<div class="aside">
-					<h3 class="aside-title">Price</h3>
-					<div class="price-filter">
-						<div id="price-slider"></div>
-						<div class="input-number price-min">
-							<input id="price-min" type="number">
-							<span class="qty-up">+</span>
-							<span class="qty-down">-</span>
-						</div>
-						<span>-</span>
-						<div class="input-number price-max">
-							<input id="price-max" type="number">
-							<span class="qty-up">+</span>
-							<span class="qty-down">-</span>
-						</div>
-					</div>
-				</div>
-				<!-- /aside Widget -->
-
-				<!-- aside Widget -->
-				<div class="aside">
+			<!-- aside Widget -->
+			<div class="aside">
 					<h3 class="aside-title">Brand</h3>
 					<div class="checkbox-filter">
 						<?php
@@ -91,7 +51,27 @@ $getWistlistByIds = $product->getWistlistById($id = $get);
 					</div>
 				</div>
 				<!-- /aside Widget -->
-
+				
+				<!-- aside Widget -->
+				<div class="aside">
+					<h3 class="aside-title">Price</h3>
+					<div class="price-filter">
+						<div id="price-slider"></div>
+						<div class="input-number price-min">
+							<input id="price-min" type="number">
+							<span class="qty-up">+</span>
+							<span class="qty-down">-</span>
+						</div>
+						<span>-</span>
+						<div class="input-number price-max">
+							<input id="price-max" type="number">
+							<span class="qty-up">+</span>
+							<span class="qty-down">-</span>
+						</div>
+					</div>
+				</div>
+				<!-- /aside Widget -->
+				<br><br>
 				<!-- aside Widget -->
 				<div class="aside">
 					<h3 class="aside-title">New Laptops</h3>
@@ -106,7 +86,7 @@ $getWistlistByIds = $product->getWistlistById($id = $get);
 								<img src="./img/<?php echo $value['pro_image'] ?>" alt="">
 							</div>
 							<div class="product-body">
-								<p class="product-category">Category</p>
+								<p class="product-category">New</p>
 								<h3 class="product-name"><a href="detail.php?id=<?php echo $value['id'] ?>&type_id=<?php echo $value['type_id'] ?>"><?php echo $value['name'] ?></a></h3>
 								<h4 class="product-price"><?php echo number_format($value['price']) ?> VND
 									<!-- <del class="product-old-price">$990.00</del> -->
@@ -121,19 +101,6 @@ $getWistlistByIds = $product->getWistlistById($id = $get);
 
 			<!-- STORE -->
 			<div id="store" class="col-md-9">
-				<!-- store top filter -->
-				<div class="store-filter clearfix">
-					<div class="store-sort">
-						<label>
-							Show:
-							<select class="input-select work-select">
-								<option value="0">3</option>
-								<option value="1">6</option>
-							</select>
-						</label>
-					</div>
-				</div>
-				<!-- /store top filter -->
 				<!-- product -->
 				<?php
 				//TÌM LIMIT VÀ CURRENT_PAGE
