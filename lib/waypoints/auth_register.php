@@ -5,8 +5,11 @@
     require "../../models/product.php";
 
     $full_name = $_POST['full_name'];  
-    $mail = $_POST['mail'];  
-    $password = $_POST['pass'];
+    $mail = $_POST['mail'];
+    //Mã hóa mật khẩu trước khi thêm vào database 
+    $password = md5($_POST['pass']);
+    $phone = $_POST['sdt'];
+    $gender = $_POST['gender'];
     
     $check = 0; //giá trị dùng kiểm tra mail tồn tại hay không.
 
@@ -62,13 +65,13 @@
          </form>'
         <?php
 
-        //Nếu mail chưa tồn taại thì thực hiện thêm người dùng vào SQL và thực hiện đăng nhập.
+        //Nếu mail chưa tồn tại thì thực hiện thêm người dùng vào SQL và thực hiện đăng nhập.
     }if($check == 0){
 
         //Kết nối đến CSDL
         $connect = mysqli_connect('localhost', 'root', '', 'nhom2');
         //Thực hiện câu truy vấn thêm người dùng vào bảng users
-        $query = "INSERT INTO `users`(`id`, `mail`, `user_name`, `password`, `role`, `date_create`) VALUES ('','$mail','$full_name','$password','user',current_timestamp())";
+        $query = "INSERT INTO `users`(`id`, `mail`, `user_name`, `password`, `gioi_tinh`, `sdt`, `role`, `date_create`) VALUES ('','$mail','$full_name','$password', '$gender', '$phone', 'user',current_timestamp())";
         mysqli_query ($connect ,$query);
 
         // Lưu Session
