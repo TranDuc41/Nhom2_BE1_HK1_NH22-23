@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 29, 2022 at 03:03 AM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- Máy chủ: 127.0.0.1:3306
+-- Thời gian đã tạo: Th12 10, 2022 lúc 01:02 PM
+-- Phiên bản máy phục vụ: 5.7.31
+-- Phiên bản PHP: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,53 +18,53 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `nhom2`
+-- Cơ sở dữ liệu: `nhom2`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cart`
+-- Cấu trúc bảng cho bảng `cart`
 --
 
-CREATE TABLE `cart` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `cart`;
+CREATE TABLE IF NOT EXISTS `cart` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
   `product_id` int(11) NOT NULL,
   `image` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` int(11) NOT NULL,
   `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `soLuong` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `soLuong` int(3) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `cart`
+-- Đang đổ dữ liệu cho bảng `cart`
 --
 
 INSERT INTO `cart` (`id`, `user_id`, `product_id`, `image`, `price`, `name`, `soLuong`) VALUES
-(54, '13', 24, 'TrueWirelessSamsungGalaxyBuds2.jpg', 2990000, 'Samsung Galaxy Buds 2', 1),
 (55, '13', 17, 'AppleWatchS8.jpeg', 11990000, 'Apple Watch S8', 1),
 (56, '13', 5, 'SamsungGlxZFlip4.jpg', 20690000, 'Samsung Galaxy Z Flip4', 1),
 (60, '13', 6, 'xiaomiredmibook15.jpg', 13290000, 'Xiaomi RedmiBook 15', 1),
-(62, '2', 7, 'MacBookAirM1_2020.jpg', 23490000, 'Apple MacBook Air M1', 1),
 (63, '13', 7, 'MacBookAirM1_2020.jpg', 23490000, 'Apple MacBook Air M1', 1),
-(66, '2', 23, 'SonyWH-1000XM4.jpg', 8490000, 'Sony WH-1000XM4', 1),
-(67, '2', 1, 'Iphone13promax.jpg', 28690000, 'Iphone 13 pro max', 1),
-(83, '2', 9, 'MacBookProM2.jpg', 32990000, 'MacBook Pro M2', 1);
+(130, '2', 24, 'TrueWirelessSamsungGalaxyBuds2.jpg', 2990000, 'Samsung Galaxy Buds 2', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `manufactures`
+-- Cấu trúc bảng cho bảng `manufactures`
 --
 
-CREATE TABLE `manufactures` (
-  `manu_id` int(11) NOT NULL,
-  `manu_name` varchar(100) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `manufactures`;
+CREATE TABLE IF NOT EXISTS `manufactures` (
+  `manu_id` int(11) NOT NULL AUTO_INCREMENT,
+  `manu_name` varchar(100) NOT NULL,
+  PRIMARY KEY (`manu_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `manufactures`
+-- Đang đổ dữ liệu cho bảng `manufactures`
 --
 
 INSERT INTO `manufactures` (`manu_id`, `manu_name`) VALUES
@@ -77,11 +77,29 @@ INSERT INTO `manufactures` (`manu_id`, `manu_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products`
+-- Cấu trúc bảng cho bảng `orders`
 --
 
-CREATE TABLE `products` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE IF NOT EXISTS `orders` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `image` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price` int(11) NOT NULL,
+  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `products`
+--
+
+DROP TABLE IF EXISTS `products`;
+CREATE TABLE IF NOT EXISTS `products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `manu_id` int(11) NOT NULL,
   `type_id` int(11) NOT NULL,
@@ -90,11 +108,12 @@ CREATE TABLE `products` (
   `description` text NOT NULL,
   `feature` tinyint(4) NOT NULL,
   `so_luong` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `products`
+-- Đang đổ dữ liệu cho bảng `products`
 --
 
 INSERT INTO `products` (`id`, `name`, `manu_id`, `type_id`, `price`, `pro_image`, `description`, `feature`, `so_luong`, `created_at`) VALUES
@@ -127,16 +146,18 @@ INSERT INTO `products` (`id`, `name`, `manu_id`, `type_id`, `price`, `pro_image`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `protypes`
+-- Cấu trúc bảng cho bảng `protypes`
 --
 
-CREATE TABLE `protypes` (
-  `type_id` int(11) NOT NULL,
-  `type_name` varchar(100) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `protypes`;
+CREATE TABLE IF NOT EXISTS `protypes` (
+  `type_id` int(11) NOT NULL AUTO_INCREMENT,
+  `type_name` varchar(100) NOT NULL,
+  PRIMARY KEY (`type_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `protypes`
+-- Đang đổ dữ liệu cho bảng `protypes`
 --
 
 INSERT INTO `protypes` (`type_id`, `type_name`) VALUES
@@ -149,11 +170,12 @@ INSERT INTO `protypes` (`type_id`, `type_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Cấu trúc bảng cho bảng `users`
 --
 
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `mail` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` char(60) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -161,35 +183,38 @@ CREATE TABLE `users` (
   `sdt` int(11) NOT NULL,
   `role` varchar(6) COLLATE utf8mb4_unicode_ci NOT NULL,
   `ban` int(1) NOT NULL,
-  `date_create` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `date_create` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `users`
+-- Đang đổ dữ liệu cho bảng `users`
 --
 
 INSERT INTO `users` (`id`, `mail`, `user_name`, `password`, `gioi_tinh`, `sdt`, `role`, `ban`, `date_create`) VALUES
-(2, 'qw@gmail.com', 'Nhi', '123', 'Nữ', 0, 'user', 0, '2022-11-22 00:37:32'),
-(13, 'An@gmail.com', 'An', 'qwe', 'Nam', 0, 'user', 0, '2022-11-18 10:13:29'),
-(14, '123@mail.com', 'Trần Đức', '123', '', 0, 'admin', 0, '2022-11-16 13:32:18');
+(2, 'qw@gmail.com', 'Nhi', '202cb962ac59075b964b07152d234b70', 'Nữ', 0, 'user', 0, '2022-12-10 11:12:30'),
+(13, 'An@gmail.com', 'An', '76d80224611fc919a5d54f0ff9fba446', 'Nam', 0, 'user', 0, '2022-12-10 11:12:47'),
+(14, '123@mail.com', 'Trần Đức', '202cb962ac59075b964b07152d234b70', '', 0, 'admin', 0, '2022-12-10 11:12:58');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wistlist`
+-- Cấu trúc bảng cho bảng `wistlist`
 --
 
-CREATE TABLE `wistlist` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `wistlist`;
+CREATE TABLE IF NOT EXISTS `wistlist` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `image` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` int(11) NOT NULL,
-  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `wistlist`
+-- Đang đổ dữ liệu cho bảng `wistlist`
 --
 
 INSERT INTO `wistlist` (`id`, `user_id`, `product_id`, `image`, `price`, `name`) VALUES
@@ -197,86 +222,6 @@ INSERT INTO `wistlist` (`id`, `user_id`, `product_id`, `image`, `price`, `name`)
 (8, 2, 24, 'TrueWirelessSamsungGalaxyBuds2.jpg', 2990000, 'Samsung Galaxy Buds 2'),
 (9, 2, 7, 'MacBookAirM1_2020.jpg', 23490000, 'Apple MacBook Air M1'),
 (13, 13, 5, 'SamsungGlxZFlip4.jpg', 20690000, 'Samsung Galaxy Z Flip4');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `cart`
---
-ALTER TABLE `cart`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `manufactures`
---
-ALTER TABLE `manufactures`
-  ADD PRIMARY KEY (`manu_id`);
-
---
--- Indexes for table `products`
---
-ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `protypes`
---
-ALTER TABLE `protypes`
-  ADD PRIMARY KEY (`type_id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `wistlist`
---
-ALTER TABLE `wistlist`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `cart`
---
-ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
-
---
--- AUTO_INCREMENT for table `manufactures`
---
-ALTER TABLE `manufactures`
-  MODIFY `manu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `products`
---
-ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
-
---
--- AUTO_INCREMENT for table `protypes`
---
-ALTER TABLE `protypes`
-  MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
--- AUTO_INCREMENT for table `wistlist`
---
-ALTER TABLE `wistlist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
