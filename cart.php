@@ -46,7 +46,9 @@ if (isset($_GET['type_id'])) {
 </head>
 
 <body>
-    <?php $protype = new Protype;
+    <?php
+    if(isset($_SESSION['name'])){
+    $protype = new Protype;
     $getIdUser = $protype->getIdUser($mail = $_SESSION['name']);
     foreach ($getIdUser as $value) :
         //gán id người dùng vào biến
@@ -158,4 +160,6 @@ if (isset($_GET['type_id'])) {
             </div>
         </div>
     </div>
-    <?php include "./views/footer.php" ?>
+    <?php } else{
+        header("Location: /Nhom2_BE1_HK1_NH22-23/login.php");
+    } include "./views/footer.php" ?>
