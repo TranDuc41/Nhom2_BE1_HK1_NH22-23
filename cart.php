@@ -109,9 +109,9 @@ if (isset($_GET['type_id'])) {
                                                 <td class="product-quantity">
                                                     <div class="quantity buttons_added">
                                                         <!--     <input type="button" class="minus" value="-"> -->
-                                                        <a href="subtractqty.php?id=<?php echo $value['id'] ?>&sl=<?php echo ($value['soLuong'] - 1) ?>"><input type="button" class="minus" value="-"></a>
+                                                        <a href="subtractqty.php?id=<?php echo $value['id'] ?>&sl=<?php echo ($value['soLuong'] - 1) ?>&tg=<?php echo($value['price'] * ($value['soLuong'] - 1)) ?>"><input type="button" class="minus" value="-"></a>
                                                         <input type="text" size="1" class="input-text qty text" title="Qty" value="<?php echo $value['soLuong'] ?>">
-                                                        <a href="addqty.php?id=<?php echo $value['id'] ?>&sl=<?php echo ($value['soLuong'] + 1) ?>"><input type="button" class="plus" value="+"></a>
+                                                        <a href="addqty.php?id=<?php echo $value['id'] ?>&sl=<?php echo ($value['soLuong'] + 1) ?>&tg=<?php echo($value['price'] * ($value['soLuong'] + 1)) ?>"><input type="button" class="plus" value="+"></a>
                                                         <!--    <input type="button" class="plus" value="+"> -->
                                                     </div>
                                                 </td>

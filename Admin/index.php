@@ -132,7 +132,7 @@ $section =  "index.php"
                     ?>
                     <?php endforeach; ?>
                     <p><b><?php echo $count ?> sản phẩm</b></p>
-                    <p class="info-tong">Số sản phẩm cảnh báo hết cần nhập thêm.</p>
+                    <p class="info-tong">Số sản phẩm cảnh báo hết cần nhập thêm (Số sản phẩm còn lai < 10).</p>
                   </div>
                 </div>
               </div>
@@ -231,7 +231,7 @@ $section =  "index.php"
           <p><b>Copyright
               <script type="text/javascript">
                 document.write(new Date().getFullYear());
-              </script> Phần mềm quản lý bán hàng | Dev By Trần Đức
+              </script> Phần mềm quản lý bán hàng
             </b></p>
         </div>
       </main>

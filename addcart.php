@@ -44,8 +44,9 @@ if (isset($_SESSION['name'])) {
             //Kết nối đến CSDL
             $connect = mysqli_connect('localhost', 'root', '', 'nhom2');
             $soLuong = $value['soLuong'] + 1;
+            $gia = $value['price'] * $soLuong;
             $ids = $value['id'];
-            $query = "UPDATE `cart` SET `soLuong`= $soLuong WHERE `id` = $ids";
+            $query = "UPDATE `cart` SET `tong_gia`= $gia, `soLuong`= $soLuong WHERE `id` = $ids";
             mysqli_query($connect, $query);
         } else {
             //Nếu sản phẩm chưa có trong giỏ hàng thì thêm sản phẩm vào
@@ -60,7 +61,7 @@ if (isset($_SESSION['name'])) {
             //Kết nối đến CSDL
             $connect = mysqli_connect('localhost', 'root', '', 'nhom2');
             //Thực hiện câu truy vấn thêm nội dung bảng cart
-            $query1 = "INSERT INTO `cart`(`user_id`, `product_id`, `image`, `price`, `name`, `soLuong`) VALUES ('$get','$id','$image','$price','$name','1')";
+            $query1 = "INSERT INTO `cart`(`user_id`, `product_id`, `image`, `price`, `name`, `soLuong`, `tong_gia`) VALUES ('$get','$id','$image','$price','$name','1','$price')";
             mysqli_query($connect, $query1);
         }
 
