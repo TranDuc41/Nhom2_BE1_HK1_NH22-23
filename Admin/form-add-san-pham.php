@@ -71,357 +71,357 @@ if (isset($_SESSION['name'])) {
 </head>
 
 <body class="app sidebar-mini rtl">
-<?php foreach ($getUser as $value) :
-        //Kiểm tra người dùng đã đăng nhập hay chưa và có role là admin hay không
-        if (isset($_SESSION['name']) && $value['role'] == "admin") { ?>
-  <style>
-    .Choicefile {
-      display: block;
-      background: #14142B;
-      border: 1px solid #fff;
-      color: #fff;
-      width: 150px;
-      text-align: center;
-      text-decoration: none;
-      cursor: pointer;
-      padding: 5px 0px;
-      border-radius: 5px;
-      font-weight: 500;
-      align-items: center;
-      justify-content: center;
-    }
+  <?php foreach ($getUser as $value) :
+    //Kiểm tra người dùng đã đăng nhập hay chưa và có role là admin hay không
+    if (isset($_SESSION['name']) && $value['role'] == "admin") { ?>
+      <style>
+        .Choicefile {
+          display: block;
+          background: #14142B;
+          border: 1px solid #fff;
+          color: #fff;
+          width: 150px;
+          text-align: center;
+          text-decoration: none;
+          cursor: pointer;
+          padding: 5px 0px;
+          border-radius: 5px;
+          font-weight: 500;
+          align-items: center;
+          justify-content: center;
+        }
 
-    .Choicefile:hover {
-      text-decoration: none;
-      color: white;
-    }
+        .Choicefile:hover {
+          text-decoration: none;
+          color: white;
+        }
 
-    #uploadfile,
-    .removeimg {
-      display: none;
-    }
+        #uploadfile,
+        .removeimg {
+          display: none;
+        }
 
-    #thumbbox {
-      position: relative;
-      width: 100%;
-      margin-bottom: 20px;
-    }
+        #thumbbox {
+          position: relative;
+          width: 100%;
+          margin-bottom: 20px;
+        }
 
-    .removeimg {
-      height: 25px;
-      position: absolute;
-      background-repeat: no-repeat;
-      top: 5px;
-      left: 5px;
-      background-size: 25px;
-      width: 25px;
-      /* border: 3px solid red; */
-      border-radius: 50%;
+        .removeimg {
+          height: 25px;
+          position: absolute;
+          background-repeat: no-repeat;
+          top: 5px;
+          left: 5px;
+          background-size: 25px;
+          width: 25px;
+          /* border: 3px solid red; */
+          border-radius: 50%;
 
-    }
+        }
 
-    .removeimg::before {
-      -webkit-box-sizing: border-box;
-      box-sizing: border-box;
-      content: '';
-      border: 1px solid red;
-      background: red;
-      text-align: center;
-      display: block;
-      margin-top: 11px;
-      transform: rotate(45deg);
-    }
+        .removeimg::before {
+          -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+          content: '';
+          border: 1px solid red;
+          background: red;
+          text-align: center;
+          display: block;
+          margin-top: 11px;
+          transform: rotate(45deg);
+        }
 
-    .removeimg::after {
-      /* color: #FFF; */
-      /* background-color: #DC403B; */
-      content: '';
-      background: red;
-      border: 1px solid red;
-      text-align: center;
-      display: block;
-      transform: rotate(-45deg);
-      margin-top: -2px;
-    }
-  </style>
-  <!-- Navbar-->
-  <header class="app-header">
-    <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
-    <!-- Navbar Right Menu-->
-    <ul class="app-nav">
-
-
-      <!-- User Menu-->
-      <li><a class="app-nav__item" href="../logout.php"><i class='bx bx-log-out bx-rotate-180'></i> </a>
-
-      </li>
-    </ul>
-  </header>
-  <!-- Sidebar menu-->
-  <?php include "views/Sidebar_menu.php" ?>
-  <main class="app-content">
-    <div class="app-title">
-      <ul class="app-breadcrumb breadcrumb">
-        <li class="breadcrumb-item">Danh sách sản phẩm</li>
-        <li class="breadcrumb-item"><a href="#">Thêm sản phẩm</a></li>
-      </ul>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="tile">
-          <h3 class="tile-title">Tạo mới sản phẩm</h3>
-          <div class="tile-body">
-            <div class="row element-button">
-              <div class="col-sm-2">
-                <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-folder-plus"></i> Thêm hãng</a>
-              </div>
-              <div class="col-sm-2">
-                <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#adddanhmuc"><i class="fas fa-folder-plus"></i> Thêm loại</a>
-              </div>
-              <div class="col-sm-2">
-                <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#addtinhtrang"><i class="fas fa-folder-plus"></i> Thêm tình trạng</a>
-              </div>
-            </div>
-            <form class="row">
-              <div class="form-group col-md-3">
-                <label class="control-label">Tên sản phẩm</label>
-                <input class="form-control" type="text">
-              </div>
+        .removeimg::after {
+          /* color: #FFF; */
+          /* background-color: #DC403B; */
+          content: '';
+          background: red;
+          border: 1px solid red;
+          text-align: center;
+          display: block;
+          transform: rotate(-45deg);
+          margin-top: -2px;
+        }
+      </style>
+      <!-- Navbar-->
+      <header class="app-header">
+        <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+        <!-- Navbar Right Menu-->
+        <ul class="app-nav">
 
 
-              <div class="form-group  col-md-3">
-                <label class="control-label">Số lượng</label>
-                <input class="form-control" type="number">
-              </div>
-              <div class="form-group col-md-3 ">
-                <label for="exampleSelect1" class="control-label">Hãng</label>
-                <select class="form-control" id="exampleSelect1">
-                  <option>-- Chọn hãng --</option>
-                  <option>Apple</option>
-                  <option>Oppo</option>
-                  <option>Samsung</option>
-                  <option>Xiaomi</option>
-                  <option>Sony</option>
-                </select>
-              </div>
-              <div class="form-group col-md-3 ">
-                <label for="exampleSelect1" class="control-label">Loại sản phẩm</label>
-                <select class="form-control" id="exampleSelect1">
-                  <option>-- Chọn loại --</option>
-                  <option>Điện thoại</option>
-                  <option>Laptop</option>
-                  <option>Loa</option>
-                  <option>Đồng hồ</option>
-                  <option>Tai nghe</option>
-                </select>
-              </div>
-              <div class="form-group col-md-3 ">
-                <label for="exampleSelect1" class="control-label">Tình trạng</label>
-                <select class="form-control" id="exampleSelect1">
-                  <option>-- Chọn tình trạng --</option>
-                  <option>Còn hàng</option>
-                  <option>Hết hàng</option>
-                </select>
-              </div>
-              <div class="form-group col-md-3">
-                <label class="control-label">Giá bán</label>
-                <input class="form-control" type="text">
-              </div>
-              <div class="form-group col-md-3 ">
-                <label for="exampleSelect1" class="control-label">Nổi bật</label>
-                <select class="form-control" id="exampleSelect1">
-                  <option>-- Chọn tình trạng --</option>
-                  <option>Có</option>
-                  <option>Không</option>
-                </select>
-              </div>
-              <div class="form-group col-md-12">
-                <label class="control-label">Ảnh sản phẩm</label>
-                <div id="myfileupload">
-                  <input type="file" id="uploadfile" name="ImageUpload" onchange="readURL(this);" />
-                </div>
-                <div id="thumbbox">
-                  <img height="450" width="400" alt="Thumb image" id="thumbimage" style="display: none" />
-                  <a class="removeimg" href="javascript:"></a>
-                </div>
-                <div id="boxchoice">
-                  <a href="javascript:" class="Choicefile"><i class="fas fa-cloud-upload-alt"></i> Chọn ảnh</a>
-                  <p style="clear:both"></p>
-                </div>
+          <!-- User Menu-->
+          <li><a class="app-nav__item" href="../logout.php"><i class='bx bx-log-out bx-rotate-180'></i> </a>
 
-              </div>
-              <div class="form-group col-md-12">
-                <label class="control-label">Mô tả sản phẩm</label>
-                <textarea class="form-control" name="mota" id="mota"></textarea>
-                <script>
-                  CKEDITOR.replace('mota');
-                </script>
-              </div>
-
-          </div>
-          <button class="btn btn-save" type="button">Lưu lại</button>
-          <a class="btn btn-cancel" href="table-data-product.php">Hủy bỏ</a>
+          </li>
+        </ul>
+      </header>
+      <!-- Sidebar menu-->
+      <?php include "views/Sidebar_menu.php" ?>
+      <main class="app-content">
+        <div class="app-title">
+          <ul class="app-breadcrumb breadcrumb">
+            <li class="breadcrumb-item">Danh sách sản phẩm</li>
+            <li class="breadcrumb-item"><a href="#">Thêm sản phẩm</a></li>
+          </ul>
         </div>
-  </main>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="tile">
+              <h3 class="tile-title">Tạo mới sản phẩm</h3>
+              <div class="tile-body">
+                <div class="row element-button">
+                  <div class="col-sm-2">
+                    <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-folder-plus"></i> Thêm hãng</a>
+                  </div>
+                  <div class="col-sm-2">
+                    <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#adddanhmuc"><i class="fas fa-folder-plus"></i> Thêm loại</a>
+                  </div>
+                  <div class="col-sm-2">
+                    <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#addtinhtrang"><i class="fas fa-folder-plus"></i> Thêm tình trạng</a>
+                  </div>
+                </div>
+                <form class="row">
+                  <div class="form-group col-md-3">
+                    <label class="control-label">Tên sản phẩm</label>
+                    <input class="form-control" type="text">
+                  </div>
 
 
-  <!--
+                  <div class="form-group  col-md-3">
+                    <label class="control-label">Số lượng</label>
+                    <input class="form-control" type="number">
+                  </div>
+                  <div class="form-group col-md-3 ">
+                    <label for="exampleSelect1" class="control-label">Hãng</label>
+                    <select class="form-control" id="exampleSelect1">
+                      <option>-- Chọn hãng --</option>
+                      <option>Apple</option>
+                      <option>Oppo</option>
+                      <option>Samsung</option>
+                      <option>Xiaomi</option>
+                      <option>Sony</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-3 ">
+                    <label for="exampleSelect1" class="control-label">Loại sản phẩm</label>
+                    <select class="form-control" id="exampleSelect1">
+                      <option>-- Chọn loại --</option>
+                      <option>Điện thoại</option>
+                      <option>Laptop</option>
+                      <option>Loa</option>
+                      <option>Đồng hồ</option>
+                      <option>Tai nghe</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-3 ">
+                    <label for="exampleSelect1" class="control-label">Tình trạng</label>
+                    <select class="form-control" id="exampleSelect1">
+                      <option>-- Chọn tình trạng --</option>
+                      <option>Còn hàng</option>
+                      <option>Hết hàng</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label class="control-label">Giá bán</label>
+                    <input class="form-control" type="text">
+                  </div>
+                  <div class="form-group col-md-3 ">
+                    <label for="exampleSelect1" class="control-label">Nổi bật</label>
+                    <select class="form-control" id="exampleSelect1">
+                      <option>-- Chọn tình trạng --</option>
+                      <option>Có</option>
+                      <option>Không</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label class="control-label">Ảnh sản phẩm</label>
+                    <div id="myfileupload">
+                      <input type="file" id="uploadfile" name="ImageUpload" onchange="readURL(this);" />
+                    </div>
+                    <div id="thumbbox">
+                      <img height="450" width="400" alt="Thumb image" id="thumbimage" style="display: none" />
+                      <a class="removeimg" href="javascript:"></a>
+                    </div>
+                    <div id="boxchoice">
+                      <a href="javascript:" class="Choicefile"><i class="fas fa-cloud-upload-alt"></i> Chọn ảnh</a>
+                      <p style="clear:both"></p>
+                    </div>
+
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label class="control-label">Mô tả sản phẩm</label>
+                    <textarea class="form-control" name="mota" id="mota"></textarea>
+                    <script>
+                      CKEDITOR.replace('mota');
+                    </script>
+                  </div>
+
+              </div>
+              <button class="btn btn-save" type="button">Lưu lại</button>
+              <a class="btn btn-cancel" href="table-data-product.php">Hủy bỏ</a>
+            </div>
+      </main>
+
+
+      <!--
   MODAL CHỨC VỤ 
 -->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
 
-        <div class="modal-body">
-          <div class="row">
-            <div class="form-group  col-md-12">
-              <span class="thong-tin-thanh-toan">
-                <h5>Thêm mới hãng</h5>
-              </span>
+            <div class="modal-body">
+              <div class="row">
+                <div class="form-group  col-md-12">
+                  <span class="thong-tin-thanh-toan">
+                    <h5>Thêm mới hãng</h5>
+                  </span>
+                </div>
+                <div class="form-group col-md-12">
+                  <label class="control-label">Nhập tên hãng mới</label>
+                  <input class="form-control" type="text" required>
+                </div>
+                <div class="form-group col-md-12">
+                  <label class="control-label">Danh mục hãng hiện đang có</label>
+                  <ul style="padding-left: 20px;">
+                    <li>Apple</li>
+                    <li>Oppo</li>
+                    <li>Xiaomi</li>
+                    <li>Samsung</li>
+                    <li>Sony</li>
+                  </ul>
+                </div>
+              </div>
+              <BR>
+              <button class="btn btn-save" type="button">Lưu lại</button>
+              <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
+              <BR>
             </div>
-            <div class="form-group col-md-12">
-              <label class="control-label">Nhập tên hãng mới</label>
-              <input class="form-control" type="text" required>
-            </div>
-            <div class="form-group col-md-12">
-              <label class="control-label">Danh mục hãng hiện đang có</label>
-              <ul style="padding-left: 20px;">
-                <li>Apple</li>
-                <li>Oppo</li>
-                <li>Xiaomi</li>
-                <li>Samsung</li>
-                <li>Sony</li>
-              </ul>
+            <div class="modal-footer">
             </div>
           </div>
-          <BR>
-          <button class="btn btn-save" type="button">Lưu lại</button>
-          <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-          <BR>
-        </div>
-        <div class="modal-footer">
         </div>
       </div>
-    </div>
-  </div>
-  <!--
+      <!--
 MODAL
 -->
 
 
 
-  <!--
+      <!--
   MODAL DANH MỤC
 -->
-  <div class="modal fade" id="adddanhmuc" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
+      <div class="modal fade" id="adddanhmuc" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
 
-        <div class="modal-body">
-          <div class="row">
-            <div class="form-group  col-md-12">
-              <span class="thong-tin-thanh-toan">
-                <h5>Thêm mới danh mục </h5>
-              </span>
+            <div class="modal-body">
+              <div class="row">
+                <div class="form-group  col-md-12">
+                  <span class="thong-tin-thanh-toan">
+                    <h5>Thêm mới danh mục </h5>
+                  </span>
+                </div>
+                <div class="form-group col-md-12">
+                  <label class="control-label">Nhập tên danh mục mới</label>
+                  <input class="form-control" type="text" required>
+                </div>
+                <div class="form-group col-md-12">
+                  <label class="control-label">Danh mục loại hiện đang có</label>
+                  <ul style="padding-left: 20px;">
+                    <li>Điện thoại</li>
+                    <li>Laptop</li>
+                    <li>Loa</li>
+                    <li>Đồng hồ</li>
+                    <li>Tai nghe</li>
+                  </ul>
+                </div>
+              </div>
+              <BR>
+              <button class="btn btn-save" type="button">Lưu lại</button>
+              <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
+              <BR>
             </div>
-            <div class="form-group col-md-12">
-              <label class="control-label">Nhập tên danh mục mới</label>
-              <input class="form-control" type="text" required>
-            </div>
-            <div class="form-group col-md-12">
-              <label class="control-label">Danh mục loại hiện đang có</label>
-              <ul style="padding-left: 20px;">
-                <li>Điện thoại</li>
-                <li>Laptop</li>
-                <li>Loa</li>
-                <li>Đồng hồ</li>
-                <li>Tai nghe</li>
-              </ul>
+            <div class="modal-footer">
             </div>
           </div>
-          <BR>
-          <button class="btn btn-save" type="button">Lưu lại</button>
-          <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-          <BR>
-        </div>
-        <div class="modal-footer">
         </div>
       </div>
-    </div>
-  </div>
-  <!--
+      <!--
 MODAL
 -->
 
 
 
 
-  <!--
+      <!--
   MODAL TÌNH TRẠNG
 -->
-  <div class="modal fade" id="addtinhtrang" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
+      <div class="modal fade" id="addtinhtrang" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
 
-        <div class="modal-body">
-          <div class="row">
-            <div class="form-group  col-md-12">
-              <span class="thong-tin-thanh-toan">
-                <h5>Thêm mới tình trạng</h5>
-              </span>
+            <div class="modal-body">
+              <div class="row">
+                <div class="form-group  col-md-12">
+                  <span class="thong-tin-thanh-toan">
+                    <h5>Thêm mới tình trạng</h5>
+                  </span>
+                </div>
+                <div class="form-group col-md-12">
+                  <label class="control-label">Nhập tình trạng mới</label>
+                  <input class="form-control" type="text" required>
+                </div>
+              </div>
+              <BR>
+              <button class="btn btn-save" type="button">Lưu lại</button>
+              <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
+              <BR>
             </div>
-            <div class="form-group col-md-12">
-              <label class="control-label">Nhập tình trạng mới</label>
-              <input class="form-control" type="text" required>
+            <div class="modal-footer">
             </div>
           </div>
-          <BR>
-          <button class="btn btn-save" type="button">Lưu lại</button>
-          <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-          <BR>
-        </div>
-        <div class="modal-footer">
         </div>
       </div>
-    </div>
-  </div>
-  <!--
+      <!--
 MODAL
 -->
 
 
 
-  <script src="js/jquery-3.2.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/plugins/pace.min.js"></script>
-  <script>
-    const inpFile = document.getElementById("inpFile");
-    const loadFile = document.getElementById("loadFile");
-    const previewContainer = document.getElementById("imagePreview");
-    const previewContainer = document.getElementById("imagePreview");
-    const previewImage = previewContainer.querySelector(".image-preview__image");
-    const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
-    inpFile.addEventListener("change", function() {
-      const file = this.files[0];
-      if (file) {
-        const reader = new FileReader();
-        previewDefaultText.style.display = "none";
-        previewImage.style.display = "block";
-        reader.addEventListener("load", function() {
-          previewImage.setAttribute("src", this.result);
+      <script src="js/jquery-3.2.1.min.js"></script>
+      <script src="js/popper.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <script src="js/main.js"></script>
+      <script src="js/plugins/pace.min.js"></script>
+      <script>
+        const inpFile = document.getElementById("inpFile");
+        const loadFile = document.getElementById("loadFile");
+        const previewContainer = document.getElementById("imagePreview");
+        const previewContainer = document.getElementById("imagePreview");
+        const previewImage = previewContainer.querySelector(".image-preview__image");
+        const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
+        inpFile.addEventListener("change", function() {
+          const file = this.files[0];
+          if (file) {
+            const reader = new FileReader();
+            previewDefaultText.style.display = "none";
+            previewImage.style.display = "block";
+            reader.addEventListener("load", function() {
+              previewImage.setAttribute("src", this.result);
+            });
+            reader.readAsDataURL(file);
+          }
         });
-        reader.readAsDataURL(file);
-      }
-    });
-  </script>
+      </script>
   <?php } else {
-            //Nếu chưa đăng nhập sẽ được chuyển hướng về trang đăng nhập
-            header("Location:../login.php");
-        }
-    endforeach;
-    ?>
+      //Nếu sử dụng tài khoản user 
+      header("Location:../404.php");
+    }
+  endforeach;
+  ?>
 </body>
 
 </html>

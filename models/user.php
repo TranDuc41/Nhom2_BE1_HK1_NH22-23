@@ -1,6 +1,16 @@
 <?php
 class User extends Db
 {
+    //Lấy tất cả users
+    public function getAllUsers()
+    {
+        $sql = self::$connection->prepare("SELECT * FROM `users` order by `id` desc");
+        $sql->execute(); //return an object
+        $items = array();
+        $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $items; //return an array
+    }
+
     public function getInfoByUsername($username)
     {
         $sql = self::$connection->prepare("SELECT * FROM `users` WHERE `user_name`=?");

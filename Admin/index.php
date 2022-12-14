@@ -322,8 +322,8 @@ $section =  "index.php"
         }
       </script>
   <?php } else {
-      //Nếu chưa đăng nhập sẽ được chuyển hướng về trang đăng nhập
-      header("Location:../login.php");
+      //Nếu sử dụng tài khoản user 
+      header("Location:../404.php");
     }
   endforeach;
   ?>
