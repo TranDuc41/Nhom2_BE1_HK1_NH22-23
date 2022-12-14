@@ -9,6 +9,7 @@ if (isset($_SESSION['name'])) {
 } else {
   header("Location:../login.php");
 }
+$section =  "form-add-nhan-vien.php" 
 ?>
 <!DOCTYPE html>
 <html lang="en">
