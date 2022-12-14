@@ -109,7 +109,7 @@ $section =  "table-data-product.php"
 
 
                         <td><?php echo $value['so_luong'] ?></td>
-                        <td><span class="badge bg-success">Còn hàng</span></td>
+                        <td><span class="badge <?php if($value['so_luong'] > 0){echo "bg-success";} else{echo "bg-danger";}?>"><?php if($value['so_luong'] > 0){echo "Còn hàng";} else{echo "Hết hàng";} ?></span></td>
                         <td><?php echo number_format($value['price']) ?> VND</td>
                         <td><?php echo $value['type_name'] ?></td>
 
