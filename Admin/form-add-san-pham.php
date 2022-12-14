@@ -9,6 +9,7 @@ if (isset($_SESSION['name'])) {
 } else {
   header("Location:../login.php");
 }
+$section =  "table-data-product.php"
 ?>
 <!DOCTYPE html>
 <html lang="en">
