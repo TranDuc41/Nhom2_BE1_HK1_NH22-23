@@ -13,6 +13,7 @@ if (isset($_SESSION['name'])) {
 }
 $getAllUser = $user->getAllUser($role = "user");
 $getAllUsers = $user->getAllUsers();
+$getAllProductdesc = $product->getAllProductdesc();
 $section =  "quan-ly-bao-cao.php"
 ?>
 <!DOCTYPE html>
@@ -88,7 +89,7 @@ $section =  "quan-ly-bao-cao.php"
                                 <h4>Tổng sản phẩm</h4>
                                 <?php
                                 $countDH = 0;
-                                foreach ($getAllProducts as $value) :
+                                foreach ($getAllProductdesc as $value) :
                                     $countDH += $value['so_luong'];
                                 endforeach
                                 ?>
@@ -136,7 +137,7 @@ $section =  "quan-ly-bao-cao.php"
                                 <h4>Hết hàng</h4>
                                 <?php
                                 $countHH = 0;
-                                foreach ($getAllProducts as $value) :
+                                foreach ($getAllProductdesc as $value) :
                                     if ($value['so_luong'] < 1) {
                                         $countHH++;
                                     }
@@ -162,7 +163,7 @@ $section =  "quan-ly-bao-cao.php"
                                 <h3 class="tile-title">SẢN PHẨM BÁN CHẠY</h3>
                             </div>
                             <div class="tile-body">
-                                <table class="table table-hover table-bordered" id="sampleTable">
+                                <table class="table table-hover table-bordered" id="sampleTable1">
                                     <thead>
                                         <tr>
                                             <th>Mã sản phẩm</th>
@@ -268,11 +269,15 @@ $section =  "quan-ly-bao-cao.php"
                                             <td>1 sản phẩm</td>
                                             <td>14.500.000 đ</td>
                                         </tr>
-                                        <tr>
+                                        <!-- <tr>
                                             <th colspan="4">Tổng cộng:</th>
                                             <td>104.890.000 đ</td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
+                                    <div>
+                                        <th colspan="1">Tổng cộng:</th>
+                                        <td colspan="4" style="text-align: end; padding-right: 50px; font-weight: 800;">104.890.000 đ</td>
+                                    </div>
                                 </table>
                             </div>
                         </div>
@@ -285,28 +290,31 @@ $section =  "quan-ly-bao-cao.php"
                                 <h3 class="tile-title">SẢN PHẨM ĐÃ HẾT</h3>
                             </div>
                             <div class="tile-body">
-                                <table class="table table-hover table-bordered" id="sampleTable">
+                                <table class="table table-hover table-bordered" id="sampleTable3">
                                     <thead>
                                         <tr>
                                             <th>Mã sản phẩm</th>
                                             <th>Tên sản phẩm</th>
                                             <th>Ảnh</th>
-                                            <th>Số lượng</th>
                                             <th>Tình trạng</th>
                                             <th>Giá tiền</th>
                                             <th>Danh mục</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>83826226</td>
-                                            <td>Tủ ly - tủ bát</td>
-                                            <td><img src="/img-sanpham/tu.jpg" alt="" width="100px;"></td>
-                                            <td>0</td>
-                                            <td><span class="badge bg-danger">Hết hàng</span></td>
-                                            <td>2.450.000 đ</td>
-                                            <td>Tủ</td>
-                                        </tr>
+                                        <?php
+                                        foreach ($getAllProductdesc as $value) :
+                                            if ($value['so_luong'] < 1) { ?>
+                                                <tr>
+                                                    <td><?php echo $value['id'] ?></td>
+                                                    <td><?php echo $value['name'] ?></td>
+                                                    <td><img src="../img/<?php echo $value['pro_image'] ?>" alt="" width="100px;"></td>
+                                                    <td><span class="badge bg-danger">Hết hàng</span></td>
+                                                    <td><?php echo number_format($value['price']) ?> VND</td>
+                                                    <td><?php echo $value['type_name'] ?></td>
+                                                </tr>
+                                        <?php }
+                                        endforeach ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -325,8 +333,12 @@ $section =  "quan-ly-bao-cao.php"
             <!-- The javascript plugin to display page loading on top-->
             <script src="js/plugins/pace.min.js"></script>
             <!-- Page specific javascripts-->
+            <script type="text/javascript" src="js/plugins/jquery.dataTables.min.js"></script>
+            <script type="text/javascript" src="js/plugins/dataTables.bootstrap.min.js"></script>
             <script type="text/javascript" src="js/plugins/chart.js"></script>
             <script type="text/javascript">
+                $('#sampleTable').DataTable();
+                $('#sampleTable3').DataTable();
                 var data = {
                     labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
                     datasets: [{

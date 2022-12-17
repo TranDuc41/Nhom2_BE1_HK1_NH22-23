@@ -125,14 +125,14 @@ $section =  "index.php"
                     //tính số sản phẩm sắp hết hàng
                     $count = 0;
                     foreach ($getAllProduct as $value) :
-                      //Nếu số lượng của sản phẩm bé hơn hoặc bằng 10
-                      if ($value['so_luong'] <= 10) {
+                      //Nếu số lượng của sản phẩm bé hơn hoặc bằng 20
+                      if ($value['so_luong'] < 20 && $value['so_luong'] > 0) {
                         $count++;
                       }
                     ?>
                     <?php endforeach; ?>
                     <p><b><?php echo $count ?> sản phẩm</b></p>
-                    <p class="info-tong">Số sản phẩm cảnh báo hết cần nhập thêm (Số sản phẩm còn lai < 10).</p>
+                    <p class="info-tong">Số sản phẩm cảnh báo hết cần nhập thêm (Số sản phẩm còn lại ít hơn 20 sản phẩm).</p>
                   </div>
                 </div>
               </div>

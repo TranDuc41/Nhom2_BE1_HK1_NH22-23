@@ -109,7 +109,7 @@ $section =  "table-data-product.php"
 
 
                         <td><?php echo $value['so_luong'] ?></td>
-                        <!-- Nếu số lượng sản phẩm > 0 "còn hàng", sản phẩm = 0 "hết hàng" -->
+                        <!-- Nếu số lượng sản phẩm > 20 "còn hàng", 0 < sản phẩm <=20 "sắp hết hàng", sản phẩm = 0 "hết hàng" -->
                         <td><span class="badge <?php if($value['so_luong'] > 20){echo "bg-success";}elseif($value['so_luong'] <= 20 & $value['so_luong'] > 0){echo "bg-warning";} else{echo "bg-danger";}?>"><?php if($value['so_luong'] > 20){echo "Còn hàng";}elseif($value['so_luong'] <= 20 & $value['so_luong'] > 0){echo "Sắp hết hàng";} else{echo "Hết hàng";} ?></span></td>
                         <td><?php echo number_format($value['price']) ?> VND</td>
                         <td><?php echo $value['type_name'] ?></td>
