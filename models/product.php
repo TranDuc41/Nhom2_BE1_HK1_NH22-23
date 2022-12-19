@@ -15,7 +15,7 @@ class Product extends Db
      {
          $sql = self::$connection->prepare("SELECT * FROM products, manufactures, protypes
          WHERE products.manu_id = manufactures.manu_id
-         AND products.type_id = protypes.type_id 
+         AND products.type_id = protypes.type_id
          ORDER BY `id` DESC ");
          $sql->execute(); //return object
          $item = array();
