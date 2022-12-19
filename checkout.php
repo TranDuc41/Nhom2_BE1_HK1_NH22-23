@@ -104,10 +104,7 @@ if(isset($_SESSION['name'])){
 		<div><strong>ĐƠN GIÁ</strong></div>
 	</div>
 	<div class="order-products">
-		<?php if (isset($_SESSION['cart'])) :
-			$getAllProducts =  $product->getAllProducts();
-			foreach ($getAllProducts as $value) :
-				if ($value['id'] == $_GET['id']) : ?>
+		
 					<div class="order-col">
 						<div> <?php echo $value['name'] ?></div>
 						<div style="max-width:440px;"><?php echo number_format($value['price']) ?> VND</div>
@@ -115,27 +112,25 @@ if(isset($_SESSION['name'])){
 
 	</div>
 	<div class="order-col">
+	<?php $total = 0;
+                                    ?>
+                                    <?php foreach ($getCartByIds as $value) : ?>
 		<div><strong>PHÍ VẬN CHUYỂN</strong></div>
 		<div><strong>MIỄN PHÍ</strong></div>
 	</div>
 	<div class="order-col">
 		<div><strong>TỔNG</strong></div>
-		<div><strong class="order-total"><?php echo number_format($value['price']) ?>VND</strong></div>
+		<div><strong class="order-total"><?php echo number_format($value['price'] * $value['soLuong']);
+                                                                            $total += $value['price'] * $value['soLuong']; ?>VND</strong></div>
 	</div>
 </div>
-<?php
-				endif;
-			endforeach;
 
-		endif
-?>
-	<a href="addcart.php?id=<?php echo $value['id'] ?>&type_id=<?php echo $value['type_id'] ?>">
-											<div class="add-to-cart">
 <button class="primary-btn order-submit col-lg-offset-4" type="submit" name="submit" >ĐẶT HÀNG</button>
 </div>
 										</a>
 
 </div>
+<?php endforeach; ?>
 <!-- /Order Details -->
 </form>
 </div>
