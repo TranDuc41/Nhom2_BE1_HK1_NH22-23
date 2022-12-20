@@ -289,4 +289,18 @@ class Product extends Db
          $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
          return $items; //return an array
      }
+     public function addProduct($name,$manu_id,$type_id,$price,$pro_image,$description,$feature,$so_luong)
+     {
+         $sql = self::$connection->prepare("INSERT 
+         INTO `products`(`name`, `manu_id`, `type_id`, `price`, `pro_image`, `description`, `feature`,`so_luong`) 
+         VALUES (?,?,?,?,?,?,?,?)");
+         $sql->bind_param("siiissii", $name,$manu_id,$type_id,$price,$pro_image,$description,$feature,$so_luong);
+         return $sql->execute(); //return an object
+     }
+    public function deleteProduct($id)
+    {
+        $sql = self::$connection->prepare("DELETE FROM `products` WHERE `id`=?");
+        $sql->bind_param("i",$id);
+        return  $sql->execute();
+    } 
 }

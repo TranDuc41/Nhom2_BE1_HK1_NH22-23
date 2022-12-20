@@ -2,7 +2,13 @@
 require "../config.php";
 require "../models/db.php";
 require "../models/user.php";
+require "../models/product.php";
+require "../models/manufacture.php";
+require "../models/protype.php";
 $user = new User;
+$product = new Product;
+$manufacture = new Manufacture;
+$protype = new Protype;
 if (isset($_SESSION['name'])) {
 
   $getUser = $user->getUser($name = $_SESSION['name']);
@@ -167,7 +173,8 @@ $section =  "table-data-product.php"
             <li class="breadcrumb-item"><a href="#">Thêm sản phẩm</a></li>
           </ul>
         </div>
-        <div class="row">
+
+         <form action="add.php" method="POST" roles="form" enctype="multipart/form-data">  
           <div class="col-md-12">
             <div class="tile">
               <h3 class="tile-title">Tạo mới sản phẩm</h3>
@@ -183,86 +190,90 @@ $section =  "table-data-product.php"
                     <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#addtinhtrang"><i class="fas fa-folder-plus"></i> Thêm tình trạng</a>
                   </div>
                 </div>
-                <form class="row">
+
+                <form class=row>
+
                   <div class="form-group col-md-3">
                     <label class="control-label">Tên sản phẩm</label>
-                    <input class="form-control" type="text">
+                    <input type="text" name="name" id="inputName" class="form-control" placeholder="Nhập tên sản phẩm" require>
                   </div>
 
 
                   <div class="form-group  col-md-3">
                     <label class="control-label">Số lượng</label>
-                    <input class="form-control" type="number">
+                    <input type="=text" id="inputname" class="form-control" name="so_luong">
                   </div>
                   <div class="form-group col-md-3 ">
                     <label for="exampleSelect1" class="control-label">Hãng</label>
-                    <select class="form-control" id="exampleSelect1">
+                    <select id="inputManu" name="manu" class="form-control custom-select">
                       <option>-- Chọn hãng --</option>
-                      <option>Apple</option>
-                      <option>Oppo</option>
-                      <option>Samsung</option>
-                      <option>Xiaomi</option>
-                      <option>Sony</option>
+                      <?php
+                      $getAllManu = $manufacture->getAllManu();
+                      foreach ($getAllManu as $value) :
+                      ?>
+                        <option value=<?php echo $value['manu_id'] ?>><?php echo $value['manu_name'] ?></option>
+                      <?php endforeach; ?>
                     </select>
                   </div>
                   <div class="form-group col-md-3 ">
                     <label for="exampleSelect1" class="control-label">Loại sản phẩm</label>
-                    <select class="form-control" id="exampleSelect1">
-                      <option>-- Chọn loại --</option>
-                      <option>Điện thoại</option>
-                      <option>Laptop</option>
-                      <option>Loa</option>
-                      <option>Đồng hồ</option>
-                      <option>Tai nghe</option>
+                    <select id="inputType" name="type" class="form-control custom-select">
+                      <option selected disabled>Chọn Loại</option>
+                      <?php
+                      $getAllProtype = $protype->getAllProtype();
+                      foreach ($getAllProtype as $value) :
+                      ?>
+                        <option value="<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></option>
+                      <?php endforeach; ?>
                     </select>
                   </div>
-                  <div class="form-group col-md-3 ">
-                    <label for="exampleSelect1" class="control-label">Tình trạng</label>
-                    <select class="form-control" id="exampleSelect1">
-                      <option>-- Chọn tình trạng --</option>
-                      <option>Còn hàng</option>
-                      <option>Hết hàng</option>
-                    </select>
+                  <!-- <div class="form-group col-md-3 ">
+                        <label for="exampleSelect1" class="control-label">Tình trạng</label>
+                        <select class="form-control" id="exampleSelect1">
+                          <option>-- Chọn tình trạng --</option>
+                          <option>Còn hàng</option>
+                          <option>Hết hàng</option>
+                        
+                                                        
+                        </select>
+                      </div> -->
+                  <div class="form-group col-md-3">
+                    <input type="number" name="price" id="inputPrice" class="form-control" placeholder="Nhập giá sản phẩm" require>
+
                   </div>
                   <div class="form-group col-md-3">
-                    <label class="control-label">Giá bán</label>
-                    <input class="form-control" type="text">
+                    <label>Nổi Bật</label>
+                    <div class="radio">
+                      <label class="px-5">
+                        <input type="radio" name="feature" value="1" checked="checked"> Có
+                      </label>
+                      <label>
+                        <input type="radio" name="feature" value="0"> Không
+                      </label>
+                    </div>
                   </div>
-                  <div class="form-group col-md-3 ">
-                    <label for="exampleSelect1" class="control-label">Nổi bật</label>
-                    <select class="form-control" id="exampleSelect1">
-                      <option>-- Chọn tình trạng --</option>
-                      <option>Có</option>
-                      <option>Không</option>
-                    </select>
-                  </div>
-                  <div class="form-group col-md-12">
-                    <label class="control-label">Ảnh sản phẩm</label>
-                    <div id="myfileupload">
-                      <input type="file" id="uploadfile" name="ImageUpload" onchange="readURL(this);" />
-                    </div>
-                    <div id="thumbbox">
-                      <img height="450" width="400" alt="Thumb image" id="thumbimage" style="display: none" />
-                      <a class="removeimg" href="javascript:"></a>
-                    </div>
-                    <div id="boxchoice">
-                      <a href="javascript:" class="Choicefile"><i class="fas fa-cloud-upload-alt"></i> Chọn ảnh</a>
-                      <p style="clear:both"></p>
-                    </div>
-
+                  <div class="form-group">
+                    <label for="inputImg">Ảnh Sản Phẩm</label>
+                    <input type="file" name="image" id="inputImage" class="form-control">
                   </div>
                   <div class="form-group col-md-12">
                     <label class="control-label">Mô tả sản phẩm</label>
-                    <textarea class="form-control" name="mota" id="mota"></textarea>
+                    <textarea id="summernote" name="description" class="form-control" rows="6"></textarea>
                     <script>
                       CKEDITOR.replace('mota');
                     </script>
                   </div>
 
               </div>
-              <button class="btn btn-save" type="button">Lưu lại</button>
-              <a class="btn btn-cancel" href="table-data-product.php">Hủy bỏ</a>
+              <div class="row">
+                <div class="col-12">
+                  <a href="form-add-san-pham.php" class="btn btn-secondary">Trở Về</a>
+                  <input type="submit" value="Thêm" class="btn btn-success float-right" href="form-add-san-pham.php" name="submit">
+                </div>
+              </div>
             </div>
+          </div>
+        </form>
       </main>
 
 

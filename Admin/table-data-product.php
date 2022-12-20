@@ -89,9 +89,12 @@ $section =  "table-data-product.php"
                       <th>Mã sản phẩm</th>
                       <th>Tên sản phẩm</th>
                       <th>Ảnh</th>
+                      <th>Mô Tả</th>
                       <th>Số lượng</th>
                       <th>Tình trạng</th>
                       <th>Giá tiền</th>
+
+                      <th>Hãng</th>
                       <th>Danh mục</th>
                       <th>Chức năng</th>
                     </tr>
@@ -107,19 +110,37 @@ $section =  "table-data-product.php"
                         <td><?php echo $value['name'] ?></td>
                         <td><img src="../img/<?php echo $value['pro_image'] ?>" alt="" width="200px;"></td>
 
-
+                        <td><?php echo substr( $value['description'],0,50) ?>...</td>
                         <td><?php echo $value['so_luong'] ?></td>
                         <!-- Nếu số lượng sản phẩm > 20 "còn hàng", 0 < sản phẩm <=20 "sắp hết hàng", sản phẩm = 0 "hết hàng" -->
-                        <td><span class="badge <?php if($value['so_luong'] > 20){echo "bg-success";}elseif($value['so_luong'] <= 20 & $value['so_luong'] > 0){echo "bg-warning";} else{echo "bg-danger";}?>"><?php if($value['so_luong'] > 20){echo "Còn hàng";}elseif($value['so_luong'] <= 20 & $value['so_luong'] > 0){echo "Sắp hết hàng";} else{echo "Hết hàng";} ?></span></td>
+                        <td><span class="badge <?php if ($value['so_luong'] > 20) {
+                                                  echo "bg-success";
+                                                } elseif ($value['so_luong'] <= 20 & $value['so_luong'] > 0) {
+                                                  echo "bg-warning";
+                                                } else {
+                                                  echo "bg-danger";
+                                                } ?>"><?php if ($value['so_luong'] > 20) {
+                                                                                                                                                                                                                echo "Còn hàng";
+                                                                                                                                                                                                              } elseif ($value['so_luong'] <= 20 & $value['so_luong'] > 0) {
+                                                                                                                                                                                                                echo "Sắp hết hàng";
+                                                                                                                                                                                                              } else {
+                                                                                                                                                                                                                echo "Hết hàng";
+                                                                                                                                                                                                              } ?></span></td>
                         <td><?php echo number_format($value['price']) ?> VND</td>
+                        <td><?php echo $value['manu_name'] ?></td>
                         <td><?php echo $value['type_name'] ?></td>
 
 
 
-                        <td><button class="btn btn-primary btn-
-                        sm trash" type="button" title="Xóa" onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-                          </button>
+                        <td>
+                          <a class="btn btn-danger btn-sm" href="delproduct.php?id=<?php echo $value['id'] ?>">
+                            <i class="fas fa-trash">
+                            </i>
+
+                          </a>
                           <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal" data-target="#ModalUP"><i class="fas fa-edit"></i></button>
+
+                        </td>
 
                         </td>
                       </tr>
