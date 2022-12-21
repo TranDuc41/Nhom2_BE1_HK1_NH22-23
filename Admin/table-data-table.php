@@ -147,19 +147,19 @@ $section =  "table-data-table.php"
           <div class="row">
             <div class="form-group col-md-6">
               <label class="control-label">Họ và tên</label>
-              <input class="form-control" type="text" required value="Võ Trường">
+              <input class="form-control" type="text" required value="">
             </div>
             <div class="form-group  col-md-6">
               <label class="control-label">Số điện thoại</label>
-              <input class="form-control" type="number" required value="09267312388">
+              <input class="form-control" type="number" required value="">
             </div>
             <div class="form-group col-md-6">
               <label class="control-label">Địa chỉ email</label>
-              <input class="form-control" type="text" required value="truong.vd2000@gmail.com">
+              <input class="form-control" type="text" required value="">
             </div>
             <div class="form-group col-md-6">
               <label class="control-label">Mật khẩu</label>
-              <input class="form-control" type="text" required value="truong.vd2000@gmail.com">
+              <input class="form-control" type="text" required value="">
             </div>
             <div class="form-group col-md-3">
               <label class="control-label">Giới tính</label>

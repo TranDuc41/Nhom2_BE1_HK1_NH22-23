@@ -104,10 +104,7 @@ if(isset($_SESSION['name'])){
 		<div><strong>ĐƠN GIÁ</strong></div>
 	</div>
 	<div class="order-products">
-		<?php if (isset($_SESSION['cart'])) :
-			$getAllProducts =  $product->getAllProducts();
-			foreach ($getAllProducts as $value) :
-				if ($value['id'] == $_GET['id']) : ?>
+		
 					<div class="order-col">
 						<div> <?php echo $value['name'] ?></div>
 						<div style="max-width:440px;"><?php echo number_format($value['price']) ?> VND</div>
@@ -124,10 +121,7 @@ if(isset($_SESSION['name'])){
 	</div>
 </div>
 <?php
-				endif;
-			endforeach;
-
-		endif
+			
 ?>
 	<a href="addcart.php?id=<?php echo $value['id'] ?>&type_id=<?php echo $value['type_id'] ?>">
 											<div class="add-to-cart">

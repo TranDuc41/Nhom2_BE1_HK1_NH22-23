@@ -51,5 +51,5 @@ class User extends Db
         $items = array();
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $items; //return an array
-    }  
+    } 
 }

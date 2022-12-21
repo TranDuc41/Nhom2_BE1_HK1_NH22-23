@@ -7,11 +7,11 @@ require "models/protype.php";
 require "models/product.php";
 $product = new Product;
 $protype = new Protype;
-$getIdUser = $protype->getIdUser($mail = $_SESSION['name']);
-$getAllProduct = $product->getProductById($id = $_GET['id']);
 
 //Khi người dùng đã đăng nhập
 if (isset($_SESSION['name'])) {
+    $getIdUser = $protype->getIdUser($mail = $_SESSION['name']);
+    $getAllProduct = $product->getProductById($id = $_GET['id']);
     if (isset($_GET['id'])) {
 
         //Sau khi có mail người dùng và id của sản phẩm
@@ -37,8 +37,8 @@ if (isset($_SESSION['name'])) {
         $query = "INSERT INTO `wistlist`(`user_id`, `product_id`, `image`, `price`, `name`) VALUES ('$get','$id','$image','$price','$name')";
         mysqli_query($connect, $query);
     }
+    header('location:wistlist.php?type_id=' . $get);
 }
-
-
-
-header('location:wistlist.php?type_id=' . $get);
+else{
+    header('location:login.php');
+}
